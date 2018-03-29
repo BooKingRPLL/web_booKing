@@ -36,8 +36,8 @@
                             <form class="form-horizontal qtyFrm">
                                 <table class="table table-striped">
                                 <tbody>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Nama:</td><td class="techSpecTD2">Harry </td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Alamat:</td><td class="techSpecTD2">Jl. Dipatiukur 200</td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2">Harry </td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Address:</td><td class="techSpecTD2">Jl. Dipatiukur 200</td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">E-mail:</td><td class="techSpecTD2">ithb.ac.id</td></tr>
                                 </tbody>
                             </table>

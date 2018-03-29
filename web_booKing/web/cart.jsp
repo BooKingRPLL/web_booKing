@@ -66,15 +66,15 @@
                                 <td>
                                     <form class="form-horizontal">
                                         <div class="control-group">
-                                            <label class="span2 control-label" for="inputEmail">Country</label>
+                                            <label class="span2 control-label">Address</label>
                                             <div class="controls">
-                                                <input type="text" placeholder="Country">
+                                                <input type="text" placeholder="Address">
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="span2 control-label" for="inputPassword">Post Code/ Zipcode</label>
+                                            <label class="span2 control-label">Post Code</label>
                                             <div class="controls">
-                                                <input type="password" placeholder="Password">
+                                                <input type="text" placeholder="Post Code">
                                             </div>
                                         </div>
                                         <div class="control-group">
@@ -89,7 +89,6 @@
                     </table>		
                     <a href="index.jsp" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
                     <a href="login.jsp" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
-
                 </div>
             </div>
         </div>
