@@ -13,16 +13,23 @@ import org.hibernate.cfg.Configuration;
  *
  * 
  */
-public class DBConnector {
-    static SessionFactory factory;
+public class DBCon_Singleton {
+    private static SessionFactory factory;
     private static Session session;
     
-    public DBConnector(){
+    private DBCon_Singleton(){
         try{
-            setFactory(new Configuration().configure().buildSessionFactory());
+            setFactory(getDbCon());
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
+    }
+    
+    public static synchronized SessionFactory getDbCon(){
+        if(factory==null){
+            factory = new Configuration().configure().buildSessionFactory();
+        }
+        return factory;
     }
     
     static void connect(){
@@ -39,7 +46,7 @@ public class DBConnector {
     }
 
     public static void setFactory(SessionFactory factory) {
-        DBConnector.factory = factory;
+        DBCon_Singleton.factory = factory;
     }
 
     public static Session getSession() {
@@ -47,7 +54,7 @@ public class DBConnector {
     }
 
     public static void setSession(Session session) {
-        DBConnector.session = session;
+        DBCon_Singleton.session = session;
     }
     
     

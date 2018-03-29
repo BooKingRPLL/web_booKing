@@ -13,13 +13,14 @@ import org.hibernate.Transaction;
 
 /**
  *
- * @author Tuyu
+ *
  */
-public class CustomerBean {
+public class CustomerDAO {
     public static DBConnector dbcon;
     public ArrayList<Customer> getAllCust(){
 //        Session session = factory.openSession();
-        dbcon = new DBConnector();
+        
+        DBConnector.getFactory();
         dbcon.connect();
         Session session = dbcon.getSession();
         Transaction tx = session.beginTransaction();
