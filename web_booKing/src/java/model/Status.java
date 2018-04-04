@@ -1,5 +1,5 @@
 package model;
-// Generated Mar 7, 2018 2:00:43 PM by Hibernate Tools 4.3.1
+// Generated Apr 4, 2018 9:47:59 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,7 +14,7 @@ public class Status  implements java.io.Serializable {
      private String statusId;
      private String status;
      private String statusDesc;
-     private Set<Transaction> transactions = new HashSet<Transaction>(0);
+     private Set<Transactions> transactionses = new HashSet<Transactions>(0);
 
     public Status() {
     }
@@ -23,11 +23,11 @@ public class Status  implements java.io.Serializable {
     public Status(String statusId) {
         this.statusId = statusId;
     }
-    public Status(String statusId, String status, String statusDesc, Set<Transaction> transactions) {
+    public Status(String statusId, String status, String statusDesc, Set<Transactions> transactionses) {
        this.statusId = statusId;
        this.status = status;
        this.statusDesc = statusDesc;
-       this.transactions = transactions;
+       this.transactionses = transactionses;
     }
    
     public String getStatusId() {
@@ -51,12 +51,12 @@ public class Status  implements java.io.Serializable {
     public void setStatusDesc(String statusDesc) {
         this.statusDesc = statusDesc;
     }
-    public Set<Transaction> getTransactions() {
-        return this.transactions;
+    public Set<Transactions> getTransactionses() {
+        return this.transactionses;
     }
     
-    public void setTransactions(Set<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTransactionses(Set<Transactions> transactionses) {
+        this.transactionses = transactionses;
     }
 
 

@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 7, 2018 2:00:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 4, 2018 9:48:00 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.Transaction" table="transaction" catalog="book_king" optimistic-lock="version">
+    <class name="model.Transactions" table="transactions" catalog="book_king" optimistic-lock="version">
         <id name="transId" type="string">
             <column name="trans_id" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="customer" class="model.Customer" fetch="select">
+        <many-to-one name="customers" class="model.Customers" fetch="select">
             <column name="user_id" length="20" />
         </many-to-one>
         <many-to-one name="status" class="model.Status" fetch="select">
@@ -17,11 +17,11 @@
         <property name="transDate" type="timestamp">
             <column name="trans_date" length="19" not-null="true" />
         </property>
-        <set name="transLists" table="trans_list" inverse="true" lazy="true" fetch="select">
+        <set name="transListses" table="trans_lists" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="trans_id" length="20" not-null="true" />
             </key>
-            <one-to-many class="model.TransList" />
+            <one-to-many class="model.TransLists" />
         </set>
     </class>
 </hibernate-mapping>

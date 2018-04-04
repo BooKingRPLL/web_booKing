@@ -8,13 +8,13 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="model/Customer.hbm.xml"/>
-    <mapping resource="model/Author.hbm.xml"/>
+    <mapping resource="model/Transactions.hbm.xml"/>
+    <mapping resource="model/Admins.hbm.xml"/>
+    <mapping resource="model/TransLists.hbm.xml"/>
     <mapping resource="model/Status.hbm.xml"/>
-    <mapping resource="model/Book.hbm.xml"/>
-    <mapping resource="model/TransList.hbm.xml"/>
-    <mapping resource="model/Admin.hbm.xml"/>
-    <mapping resource="model/Transaction.hbm.xml"/>
-    <mapping resource="model/Genre.hbm.xml"/>
+    <mapping resource="model/Authors.hbm.xml"/>
+    <mapping resource="model/Books.hbm.xml"/>
+    <mapping resource="model/Customers.hbm.xml"/>
+    <mapping resource="model/Genres.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

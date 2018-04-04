@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 7, 2018 2:00:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 4, 2018 9:48:00 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.TransList" table="trans_list" catalog="book_king" optimistic-lock="version">
-        <composite-id name="id" class="model.TransListId">
+    <class name="model.TransLists" table="trans_lists" catalog="book_king" optimistic-lock="version">
+        <composite-id name="id" class="model.TransListsId">
             <key-property name="transId" type="string">
                 <column name="trans_id" length="20" />
             </key-property>
@@ -12,10 +12,10 @@
                 <column name="book_id" length="20" />
             </key-property>
         </composite-id>
-        <many-to-one name="book" class="model.Book" update="false" insert="false" fetch="select">
+        <many-to-one name="books" class="model.Books" update="false" insert="false" fetch="select">
             <column name="book_id" length="20" not-null="true" />
         </many-to-one>
-        <many-to-one name="transaction" class="model.Transaction" update="false" insert="false" fetch="select">
+        <many-to-one name="transactions" class="model.Transactions" update="false" insert="false" fetch="select">
             <column name="trans_id" length="20" not-null="true" />
         </many-to-one>
         <property name="quantity" type="java.lang.Integer">

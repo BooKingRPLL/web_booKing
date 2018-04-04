@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Mar 7, 2018 2:00:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 4, 2018 9:48:00 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="model.Book" table="book" catalog="book_king" optimistic-lock="version">
+    <class name="model.Books" table="books" catalog="book_king" optimistic-lock="version">
         <id name="bookId" type="string">
             <column name="book_id" length="20" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="author" class="model.Author" fetch="select">
+        <many-to-one name="authors" class="model.Authors" fetch="select">
             <column name="author_id" length="20" />
-        </many-to-one>
-        <many-to-one name="genre" class="model.Genre" fetch="select">
-            <column name="genre_id" length="20" />
         </many-to-one>
         <property name="title" type="string">
             <column name="title" length="30" />
@@ -29,11 +26,19 @@
         <property name="price" type="java.lang.Integer">
             <column name="price" />
         </property>
-        <set name="transLists" table="trans_list" inverse="true" lazy="true" fetch="select">
+        <set name="genreses" table="genre_lists" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="book_id" length="20" not-null="true" />
             </key>
-            <one-to-many class="model.TransList" />
+            <many-to-many entity-name="model.Genres">
+                <column name="genre_id" length="20" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="transListses" table="trans_lists" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="book_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="model.TransLists" />
         </set>
     </class>
 </hibernate-mapping>
