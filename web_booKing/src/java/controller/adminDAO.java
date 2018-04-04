@@ -60,17 +60,17 @@ public class adminDAO {
         return true;
     }
     
-    public static boolean changePrice(Books b, String oldPrice, String newPrice) {
+    public static boolean changePrice(Books b, int oldPrice, int newPrice) {
         DBConnector.getFactory();
         dbcon.connect();
         Session session = dbcon.getSession();
         Transaction tx = session.beginTransaction();
 
-        Customers newCust = (Customers) session.get(Customers.class, b.getBookId());
-        if (!b.getPrice().equals(oldPrice)) {
+        Books newBook = (Books) session.get(Customers.class, b.getBookId());
+        if (b.getPrice() != oldPrice) {
             return false;
         } else {
-            newCust.setPassword(newPrice);
+            newBook.setPrice(newPrice);
 
             tx.commit();
             dbcon.disconnect();
@@ -92,7 +92,7 @@ public class adminDAO {
         return list;
     }
     
-     public static ArrayList<Genres> getAllGenres() {
+    public static ArrayList<Genres> getAllGenres() {
         DBConnector.getFactory();
         dbcon.connect();
         Session session = dbcon.getSession();

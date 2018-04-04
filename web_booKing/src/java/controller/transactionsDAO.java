@@ -5,16 +5,45 @@
  */
 package controller;
 
+import static controller.userDAO.dbcon;
+import model.Books;
+import model.Customers;
+import model.Status;
+import model.Transactions;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 /**
  *
  * @author Tuyu
  */
 public class transactionsDAO {
-    public static void generatePayment(){
-        
+    public static boolean generatePayment(Transactions t) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+        session.save(t);
+        tx.commit();
+        dbcon.disconnect();
+        return true;
     }
     
-    public static void editStatus(){
-        
+    public static boolean changeAddress(Transactions t, Status oldStatus, Status newStatus) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Transactions newTrans = (Transactions) session.get(Transactions.class, t.getTransId());
+        if (!t.getStatus().equals(oldStatus)) {
+            return false;
+        } else {
+            newTrans.setStatus(newStatus);
+
+            tx.commit();
+            dbcon.disconnect();
+            return true;
+        }
     }
 }
