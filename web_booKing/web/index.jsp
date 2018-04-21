@@ -16,13 +16,13 @@
                 <div class="well np">
                     <div id="myCarousel" class="carousel slide homCar">
                         <div class="carousel-inner">
-                            <div class="item">
-                                <img style="width:100%" src="assets/img/quotebook.jpg" alt="bootstrap ecommerce templates">
-                            </div>
-                            <div class="item">
-                                <img style="width:100%" src="assets/img/quotebook.jpg" alt="bootstrap ecommerce templates">
-                            </div>
                             <div class="item active">
+                                <img style="width:100%" src="assets/img/quotebook.jpg" alt="bootstrap ecommerce templates">
+                            </div>
+                            <div class="item">
+                                <img style="width:100%" src="assets/img/quotebook.jpg" alt="bootstrap ecommerce templates">
+                            </div>
+                            <div class="item">
                                 <img style="width:100%" src="assets/img/quotebook.jpg" alt="bootstrap ecommerce templates">
                             </div>
                             <div class="item">

@@ -37,11 +37,13 @@
             <header id="header">
                 <div class="row">
                     <div class="span4">
+                        <center>
                         <h1>
                             <a class="logo" href="index.jsp"> 
-                                <img src="assets/img/logo.png" alt="bootstrap sexy shop">
+                                <img src="assets/img/logo3.png" alt="bootstrap sexy shop">
                             </a>
                         </h1>
+                        </center>
                     </div>
                 </div>
             </header>
@@ -49,11 +51,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="container">
-                        <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
+                       
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class=""><a href="list-view.jsp">List View</a></li>
@@ -67,5 +65,6 @@
                     </div>
                 </div>
             </div>
+            
     </body>
 </html>

@@ -10,23 +10,7 @@
     <body>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
-           <div id="sidebar" class="span3">
-                <div class="well well-small">
-                    <ul class="nav nav-list">
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Educational</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Horror</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Fantasy</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Romance</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Humor</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Mystery</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>History</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>Adventure</a></li>
-                        <li><a href="products.jsp"><span class="icon-chevron-right"></span>See All Books</a></li>
-                        <li style="border:0"> &nbsp;</li>
-                    </ul>
-                </div>
-                <div class="well well-small" ><a href="#"><img src="assets/img/paypal.jpg" alt="payment method paypal"></a></div>
-            </div>
+           <jsp:include page="navigation.jsp" flush="true" />
             <div class="span9">
                 <ul class="breadcrumb">
                     <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
@@ -36,7 +20,7 @@
                 <hr class="soft"/>
 
                 <div class="row">
-                    <div class="span4">
+                    <div class="span13">
                         <div class="well">
                             <h5>LOGIN</h5>
                             <form>

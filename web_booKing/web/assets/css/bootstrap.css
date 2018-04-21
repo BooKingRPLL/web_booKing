@@ -292,6 +292,9 @@ a:focus {
   width: 940px;
 }
 
+.span13 {
+  width: 700px;
+}
 .span12 {
   width: 940px;
 }
@@ -325,7 +328,7 @@ a:focus {
 }
 
 .span4 {
-  width: 300px;
+  width: 900px;
 }
 
 .span3 {
@@ -805,7 +808,7 @@ h4 small {
 
 .page-header {
   padding-bottom: 9px;
-  margin: 20px 0 30px;
+  margin: 20px 0 20px;
   border-bottom: 1px solid #eeeeee;
 }
 
