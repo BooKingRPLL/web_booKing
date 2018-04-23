@@ -8,9 +8,12 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <%
+            request.setAttribute("onPage", "home");
+        %>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
-             <jsp:include page="navigation.jsp" flush="true" />
+            <jsp:include page="navigation.jsp" flush="true" />
             <div class="span9">
                 <ul class="breadcrumb">
                     <li><a href="index.html">Home</a> <span class="divider">/</span></li>
@@ -50,8 +53,8 @@
                                 <h4>Overview</h4>
                                 <p>Buku adalah kumpulan kertas atau bahan lainnya yang dijilid menjadi satu pada salah satu ujungnya dan berisi tulisan atau gambar. Setiap sisi dari sebuah lembaran kertas pada buku disebut sebuah halaman.
                                 </p>
-                                    <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart</button>
-                                    
+                                <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart</button>
+
                             </form>
                         </div>
                     </div>
@@ -80,6 +83,6 @@
                 </div>
             </div>
         </div>
-             <jsp:include page="footer.jsp" flush="true" />
+        <jsp:include page="footer.jsp" flush="true" />
     </body>
 </html>

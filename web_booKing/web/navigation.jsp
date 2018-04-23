@@ -4,6 +4,9 @@
     Author     : Sujana
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Genres"%>
+<%@page import="controller.AdminDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,14 +14,16 @@
         <div id="sidebar" class="span3">
                 <div class="well well-small">
                     <ul class="nav nav-list">
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Educational</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Horror</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Fantasy</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Romance</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Humor</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Mystery</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>History</a></li>
-                        <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>Adventure</a></li>
+                        <%
+                            AdminDAO adminDAO = new AdminDAO();
+                            ArrayList<Genres> genres = new ArrayList<Genres>();
+                            genres = adminDAO.getAllGenres();
+                            for(int i=0;i<genres.size();i++){
+                        %>
+                            <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span><%=genres.get(i).getGenre()%></a></li>
+                        <%
+                            }
+                        %>
                         <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span>See All Books</a></li>
                         <li style="border:0"> &nbsp;</li>
                     </ul>

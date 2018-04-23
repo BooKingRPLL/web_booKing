@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  *
  *
  */
-public class userDAO {
+public class UserDAO {
 
     public static DBConnector dbcon = new DBConnector();
 

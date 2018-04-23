@@ -21,12 +21,57 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="topNav">
                 <div class="container">
+                    <%
+                        String home = "active";
+                        String myAccount = null;
+                        String login = null;
+                        String register = null;
+                        String shoppingCart = null;
+                        String onPage = (String) request.getAttribute("onPage");
+                        if (onPage.equals("home")) {
+                            home = "active";
+                            myAccount = null;
+                            login = null;
+                            register = null;
+                            shoppingCart = null;
+                        } else if (onPage.equals("myAccount")) {
+                            home = null;
+                            myAccount = "active";
+                            login = null;
+                            register = null;
+                            shoppingCart = null;
+                        } else if (onPage.equals("login")) {
+                            home = null;
+                            myAccount = null;
+                            login = "active";
+                            register = null;
+                            shoppingCart = null;
+                        } else if (onPage.equals("register")) {
+                            home = null;
+                            myAccount = null;
+                            login = null;
+                            register = "active";
+                            shoppingCart = null;
+                        } else if (onPage.equals("shoppingCart")) {
+                            home = null;
+                            myAccount = null;
+                            login = null;
+                            register = null;
+                            shoppingCart = "active";
+                        } else {
+                            home = "active";
+                            myAccount = null;
+                            login = null;
+                            register = null;
+                            shoppingCart = null;
+                        }
+                    %>
                     <div class="alignR">
-                        <a class="active" href="index.jsp"> <span class="icon-home"></span> Home</a> 
-                        <a href="account.jsp"><span class="icon-user"></span> My Account</a> 
-                        <a href="login.jsp"> Login </a>
-                        <a href="register.jsp"> Register </a> 
-                        <a href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
+                        <a class=<%=home%> href="index.jsp?"> <span class="icon-home"></span> Home</a> 
+                        <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
+                        <a class=<%=login%> href="login.jsp"> Login </a>
+                        <a class=<%=register%> href="register.jsp"> Register </a> 
+                        <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
                     </div>
                 </div>
             </div>
@@ -38,11 +83,11 @@
                 <div class="row">
                     <div class="span4">
                         <center>
-                        <h1>
-                            <a class="logo" href="index.jsp"> 
-                                <img src="assets/img/logo3.png" alt="bootstrap sexy shop">
-                            </a>
-                        </h1>
+                            <h1>
+                                <a class="logo" href="index.jsp"> 
+                                    <img src="assets/img/logo3.png" alt="bootstrap sexy shop">
+                                </a>
+                            </h1>
                         </center>
                     </div>
                 </div>
@@ -51,7 +96,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <div class="container">
-                       
+
                         <div class="nav-collapse">
                             <ul class="nav">
                                 <li class=""><a href="list-view.jsp">List View</a></li>
@@ -65,6 +110,6 @@
                     </div>
                 </div>
             </div>
-            
+
     </body>
 </html>

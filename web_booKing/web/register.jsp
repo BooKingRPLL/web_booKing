@@ -7,6 +7,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+    <%
+        request.setAttribute("onPage", "register");
+    %>
     <body>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
@@ -28,7 +31,7 @@
                 <div class="well well-small" ><a href="#"><img src="assets/img/paypal.jpg" alt="payment method paypal"></a></div>
             </div>
 
-   
+
             <div class="span9">
                 <ul class="breadcrumb">
                     <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
@@ -75,7 +78,7 @@
                                 <input type="password" placeholder="Password">
                             </div>
                         </div>
-                        
+
                         <div class="control-group">
                             <div class="controls">
                                 <input type="submit" name="submitAccount" value="Register" class="exclusive shopBtn">

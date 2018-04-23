@@ -5,7 +5,7 @@
  */
 package controller;
 
-import static controller.userDAO.dbcon;
+import static controller.UserDAO.dbcon;
 import java.util.ArrayList;
 import model.Authors;
 import model.Books;
@@ -20,7 +20,7 @@ import org.hibernate.Transaction;
  *
  * @author Tuyu
  */
-public class adminDAO {
+public class AdminDAO {
     public static ArrayList<Customers> getAllCustomers() {
         DBConnector.getFactory();
         dbcon.connect();

@@ -8,9 +8,12 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <%
+            request.setAttribute("onPage", "myAccount");
+        %>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
-             <jsp:include page="navigation.jsp" flush="true" />
+            <jsp:include page="navigation.jsp" flush="true" />
             <div class="span9">
                 <ul class="breadcrumb">
                     <li><a href="index.html">Home</a> <span class="divider">/</span></li>
@@ -35,12 +38,12 @@
 
                             <form class="form-horizontal qtyFrm">
                                 <table class="table table-striped">
-                                <tbody>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2">Harry </td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Address:</td><td class="techSpecTD2">Jl. Dipatiukur 200</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">E-mail:</td><td class="techSpecTD2">ithb.ac.id</td></tr>
-                                </tbody>
-                            </table>
+                                    <tbody>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2">Harry </td></tr>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">Address:</td><td class="techSpecTD2">Jl. Dipatiukur 200</td></tr>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">E-mail:</td><td class="techSpecTD2">ithb.ac.id</td></tr>
+                                    </tbody>
+                                </table>
                             </form>
                         </div>
                     </div>
@@ -48,6 +51,6 @@
                 </div>
             </div>
         </div>
-             <jsp:include page="footer.jsp" flush="true" />
+        <jsp:include page="footer.jsp" flush="true" />
     </body>
 </html>

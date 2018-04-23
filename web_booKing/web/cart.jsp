@@ -8,6 +8,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <body>
+        <%
+            request.setAttribute("onPage", "shoppingCart");
+        %>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
             <div class="span12">

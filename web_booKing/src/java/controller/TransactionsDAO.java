@@ -5,7 +5,7 @@
  */
 package controller;
 
-import static controller.userDAO.dbcon;
+import static controller.UserDAO.dbcon;
 import model.Books;
 import model.Customers;
 import model.Status;
@@ -17,7 +17,7 @@ import org.hibernate.Transaction;
  *
  * @author Tuyu
  */
-public class transactionsDAO {
+public class TransactionsDAO {
     public static boolean generatePayment(Transactions t) {
         DBConnector.getFactory();
         dbcon.connect();

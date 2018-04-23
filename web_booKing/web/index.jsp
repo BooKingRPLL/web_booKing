@@ -4,11 +4,19 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.CurrencyConverter"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Books"%>
+<%@page import="controller.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
+
     <body>
+        <%
+            request.setAttribute("onPage", "home");
+
+        %>
         <jsp:include page="header.jsp" flush="true" />
         <div class="row">
             <jsp:include page="navigation.jsp" flush="true" />
@@ -37,95 +45,67 @@
                 New Products
                 -->
                 <div class="well well-small">
-                    <h3>New Books </h3>
+                    <h3>New Books </h3> 
+                    <%                        String email = (String) request.getAttribute("email");
+                        if (email != null) {
+                            out.println(email);
+                        }
+                    %>
                     <hr class="soften"/>
-                    
+
                     <div class="row-fluid">
                         <ul class="thumbnails">
-                            <li class="span4">
-                                <div class="thumbnail">
-
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku2.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Harry Potter</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
+                            <%
+                                UserDAO userDAO = new UserDAO();
+                                ArrayList<Books> newBooks = new ArrayList<Books>();
+                                newBooks = userDAO.getAllBooks();
+                                for (int i = 0; i < newBooks.size(); i++) {
+                            %>
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                     <a href="product_details.jsp"><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
-                                        <p>Algoritma & Pemrograman</p>
-                                        <p><strong> $22.00</strong></p>
+                                        <p><%=newBooks.get(i).getTitle()%></p>
+                                        <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
                                         <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
                                         <br class="clr">
                                     </div>
                                 </div>
                             </li>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku1.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Spilling Ink</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
+                            <%
+                                }
+                            %>
                         </ul>
                     </div>
                 </div>
-                
+
                 <div class="well well-small">
                     <h3>Popular Books </h3>
                     <hr class="soften"/>
-                    
+
                     <div class="row-fluid">
                         <ul class="thumbnails">
-                            <li class="span4">
-                                <div class="thumbnail">
-
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku1.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Spilling Ink</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku2.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Harry Potter</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
+                            <%
+                                ArrayList<Books> popularBooks = new ArrayList<Books>();
+                                popularBooks = userDAO.getAllBooks();
+                                for (int i = 0; i < popularBooks.size(); i++) {
+                            %>
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
                                     <a href="product_details.jsp"><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
-                                        <p>Algoritma & Pemrograman</p>
-                                        <p><strong> $22.00</strong></p>
+                                        <p><%=popularBooks.get(i).getTitle()%></p>
+                                        <p><strong> <%=CurrencyConverter.split(popularBooks.get(i).getPrice())%></strong></p>
                                         <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
                                         <br class="clr">
                                     </div>
                                 </div>
                             </li>
+                            <%
+                                }
+                            %>
                         </ul>
                     </div>
                 </div>
