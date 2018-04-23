@@ -4,6 +4,9 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.CurrencyConverter"%>
+<%@page import="controller.UserDAO"%>
+<%@page import="model.Books"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -40,18 +43,25 @@
                             </div>
                         </div>
                         <div class="span7">
-                            <h3>Name of the Item</h3>
+                            <%
+                                UserDAO userDAO = new UserDAO();
+                                String bookID = (String) request.getParameter("id");
+                                Books book = userDAO.getBookByID(bookID);
+                                
+                            %>
+                            <h3><%=book.getTitle()%></h3>
                             <hr class="soft"/>
 
                             <form class="form-horizontal qtyFrm">
                                 <div class="control-group">
-                                    <label class="control-label"><span>Price : $140.00</span></label>
+                                    <label class="control-label"><span>Price : <br><%=CurrencyConverter.split(book.getPrice())%></span></label>
                                     <div class="controls">
                                         <input type="number" class="span6" placeholder="Qty.">
                                     </div>
                                 </div>
                                 <h4>Overview</h4>
-                                <p>Buku adalah kumpulan kertas atau bahan lainnya yang dijilid menjadi satu pada salah satu ujungnya dan berisi tulisan atau gambar. Setiap sisi dari sebuah lembaran kertas pada buku disebut sebuah halaman.
+                                <p>
+                                    <%= book.getSynopsis()%>
                                 </p>
                                 <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart</button>
 
@@ -69,12 +79,9 @@
                             <h4>Product Information</h4>
                             <table class="table table-striped">
                                 <tbody>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Nama Buku:</td><td class="techSpecTD2">Harry Potter</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Pengarang:</td><td class="techSpecTD2">JK Rowling</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Penerbit:</td><td class="techSpecTD2">PT.Buku</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Tahun Terbit:</td><td class="techSpecTD2">2001</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Tebal Buku:</td><td class="techSpecTD2">200</td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">ISBN:</td><td class="techSpecTD2">122855031</td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Nama Buku:</td><td class="techSpecTD2"><%=book.getTitle()%></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Tahun Terbit:</td><td class="techSpecTD2"><%=book.getYear()%></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Tebal Buku:</td><td class="techSpecTD2"><%=book.getPage()%></td></tr>
                                 </tbody>
                             </table>
                         </div>

@@ -12,7 +12,7 @@ public class Authors  implements java.io.Serializable {
 
 
      private String authorId;
-     private String author;
+     public String author;
      private Set<Books> bookses = new HashSet<Books>(0);
 
     public Authors() {

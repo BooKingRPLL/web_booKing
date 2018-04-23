@@ -32,7 +32,7 @@
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku3.jpg" alt=""></a>
+                                    <a href=<%="\"product_details.jsp?id="+newBooks.get(i).getBookId()+"\""%>><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
                                         <p><%=newBooks.get(i).getTitle()%></p>
                                         <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
@@ -44,49 +44,6 @@
                             <%
                                 }
                             %>
-                        </ul>
-                    </div>
-                    <div class="row-fluid">
-                        <ul class="thumbnails">
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a href="product_details.jsp" class="overlay"></a>
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku1.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Spilling Ink</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a href="product_details.jsp" class="overlay"></a>
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku2.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Harry Potter</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a href="product_details.jsp" class="overlay"></a>
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href="product_details.jsp"><img src="assets/img/buku3.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p>Algoritma & Pemrograman</p>
-                                        <p><strong> $22.00</strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>

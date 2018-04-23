@@ -12,7 +12,7 @@ public class Books  implements java.io.Serializable {
 
 
      private String bookId;
-     private Authors authors;
+     public Authors authors;
      private String title;
      private String synopsis;
      private Integer year;
@@ -104,7 +104,7 @@ public class Books  implements java.io.Serializable {
         this.transListses = transListses;
     }
 
-
+    
 
 
 }

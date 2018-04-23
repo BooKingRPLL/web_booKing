@@ -23,14 +23,13 @@ public class UserDAO {
     public static DBConnector dbcon = new DBConnector();
 
     public static boolean login(String email, String password) {
-        
+
         Session session = DBConnector.getFactory().openSession();
 //        Transaction tx = session.beginTransaction();
 
         Query q = session.createQuery("from Customers where email = '" + email + "'");
 
 //        tx.commit();
-
         Iterator it = q.iterate();
         Customers cust;
         boolean found = false;
@@ -110,19 +109,33 @@ public class UserDAO {
         dbcon.disconnect();
         return list;
     }
-    
-    public static void getBooksByGenre(){
-        
+
+    public static Books getBookByID(String id) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where book_id='"+id+"'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list.get(0);
     }
-    
-    public static void getBooksByAuthor(){
-        
+
+    public static void getBooksByGenre() {
+
     }
-    
-    public static void getTransactionsByUser(){
-        
+
+    public static void getBooksByAuthor() {
+
     }
-    
+
+    public static void getTransactionsByUser() {
+
+    }
+
 //    public static String getGenre(String g) {
 //        DBConnector.getFactory();
 //        dbcon.connect();
@@ -162,7 +175,6 @@ public class UserDAO {
 //        dbcon.disconnect();
 //        return list;
 //    }
-
     public static void main(String args[]) {
         tesLogin();
     }
