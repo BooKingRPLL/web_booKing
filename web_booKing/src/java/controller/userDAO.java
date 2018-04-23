@@ -23,14 +23,13 @@ public class userDAO {
     public static DBConnector dbcon = new DBConnector();
 
     public static boolean login(String email, String password) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
+        
+        Session session = DBConnector.getFactory().openSession();
+//        Transaction tx = session.beginTransaction();
 
         Query q = session.createQuery("from Customers where email = '" + email + "'");
 
-        tx.commit();
+//        tx.commit();
 
         Iterator it = q.iterate();
         Customers cust;
@@ -41,11 +40,14 @@ public class userDAO {
                 found = true;
             }
         }
-        dbcon.disconnect();
-        if (found) {
-            return true;
-        }
-        return false;
+        session.close();
+        return found;
+//        session.close();
+//        dbcon.disconnect();
+//        if (found) {
+//            return true;
+//        }
+//        return false;
     }
 
     public static boolean register(Customers c) {
@@ -162,7 +164,7 @@ public class userDAO {
 //    }
 
     public static void main(String args[]) {
-        System.out.println(getAllBooks());
+        tesLogin();
     }
 
     public static void tesRegister() {
