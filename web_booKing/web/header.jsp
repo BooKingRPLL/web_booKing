@@ -21,13 +21,22 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="topNav">
                 <div class="container">
+                    <div class="alignR">
                     <%
                         String home = "active";
                         String myAccount = null;
                         String login = null;
                         String register = null;
                         String shoppingCart = null;
+                        boolean status_login = false;
                         String onPage = (String) request.getAttribute("onPage");
+                        String cek = (String) request.getAttribute("login");
+//                        if(cek.equals("true")){
+//                            status_login = true;
+//                        }
+                    %>
+                        <a class=<%=home%> href="index.jsp?"> <span class="icon-home"></span> Home</a> 
+                    <%
                         if (onPage.equals("home")) {
                             home = "active";
                             myAccount = null;
@@ -40,24 +49,28 @@
                             login = null;
                             register = null;
                             shoppingCart = null;
+                            status_login = true;
                         } else if (onPage.equals("login")) {
                             home = null;
                             myAccount = null;
                             login = "active";
                             register = null;
                             shoppingCart = null;
+                            status_login = false;
                         } else if (onPage.equals("register")) {
                             home = null;
                             myAccount = null;
                             login = null;
                             register = "active";
                             shoppingCart = null;
+                            status_login = false;
                         } else if (onPage.equals("shoppingCart")) {
                             home = null;
                             myAccount = null;
                             login = null;
                             register = null;
                             shoppingCart = "active";
+                            status_login = true;
                         } else {
                             home = "active";
                             myAccount = null;
@@ -65,13 +78,18 @@
                             register = null;
                             shoppingCart = null;
                         }
+                        if(status_login){
                     %>
-                    <div class="alignR">
-                        <a class=<%=home%> href="index.jsp?"> <span class="icon-home"></span> Home</a> 
                         <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
+                        <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
+                    <%
+                        }else{
+                    %>
                         <a class=<%=login%> href="login.jsp"> Login </a>
                         <a class=<%=register%> href="register.jsp"> Register </a> 
-                        <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
+                    <%        
+                        }
+                    %>  
                     </div>
                 </div>
             </div>
@@ -103,7 +121,7 @@
                                 <li class=""><a href="grid-view.jsp">Grid View</a></li>
                             </ul>
                             <form action="Search" class="navbar-search pull-left" method="POST">
-                                <input type="text" id="typeBook" name="bookName" placeholder="Search" class="search-query span2">
+                                <input type="text" id="typeBook" name="bookTitle" placeholder="Search" class="search-query span2">
                                 <select id="bookType" name="bookType">
                                     <option value="Title">Title</option>
                                     <option value="Author">Author</option>

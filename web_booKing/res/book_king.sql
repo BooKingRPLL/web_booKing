@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2018 at 03:24 AM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- Generation Time: Apr 24, 2018 at 03:29 PM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -82,17 +80,20 @@ CREATE TABLE `books` (
   `synopsis` text,
   `year` int(11) DEFAULT NULL,
   `page` int(11) DEFAULT NULL,
-  `price` int(11) DEFAULT NULL
+  `price` int(11) DEFAULT NULL,
+  `qty` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`book_id`, `author_id`, `title`, `synopsis`, `year`, `page`, `price`) VALUES
-('B0000001', 'A0001', 'Ready Player One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 385, 55000),
-('B0000002', 'A0001', 'Ready Player Two', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 305, 48000),
-('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000);
+INSERT INTO `books` (`book_id`, `author_id`, `title`, `synopsis`, `year`, `page`, `price`, `qty`) VALUES
+('B0000001', 'A0001', 'Ready Player One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 385, 55000, 5),
+('B0000002', 'A0001', 'Ready Player Two', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 305, 48000, 10),
+('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000, 42),
+('B0000004', 'A0001', 'Ready Player Four', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 383, 46000, 3),
+('B0000005', 'A0002', 'zzz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 10, 5000, 500);
 
 -- --------------------------------------------------------
 
@@ -114,14 +115,19 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`user_id`, `name`, `password`, `email`, `address`, `phone_num`) VALUES
+('0.8040500799193864', ' ', '', '', '', ''),
+('0.8598437708055342', 'vvvv ', '', '', '', ''),
+('0.8705121139943524', ' ', '', '', '', ''),
 ('1', 'customer 1', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
+('10', 'a a', 'a', NULL, NULL, 'a'),
 ('2', 'customer 2', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
 ('3', 'customer 3', '3105', 'cust2@gmail.com', 'tki 2', '08123456789'),
 ('4', 'customer 4', '3105', 'cust3@gmail.com', 'tki 3', '08123456789'),
 ('5', 'customer 5', '3105', 'cust4@gmail.com', 'tki 4', '08123456789'),
 ('6', 'customer tes', '3105', 'tes@gmail.com', 'tki tes', '085125123'),
 ('7', 'customer tes2', '3105', 'tes2@gmail.com', 'tki tes 2', '085125123'),
-('8', 'customer tes3', '3105', 'tes3@gmail.com', 'tki tes 3', '085125123');
+('8', 'customer tes3', '3105', 'tes3@gmail.com', 'tki tes 3', '085125123'),
+('9', 'EvanJoshua', '123123', NULL, NULL, '123412');
 
 -- --------------------------------------------------------
 
@@ -331,7 +337,6 @@ ALTER TABLE `transactions`
 ALTER TABLE `trans_lists`
   ADD CONSTRAINT `tl_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
   ADD CONSTRAINT `tl_trans` FOREIGN KEY (`trans_id`) REFERENCES `transactions` (`trans_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

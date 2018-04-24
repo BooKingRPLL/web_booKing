@@ -79,10 +79,12 @@ public class Login extends HttpServlet {
         String password = request.getParameter("password");
         if (userDAO.loginCust(email, password)) {
             request.setAttribute("email", email);
+            request.setAttribute("login","true");
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response);
         } else {
             request.setAttribute("warning", "Login gagal!");
+            request.setAttribute("login","false");
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.include(request, response);
         }
