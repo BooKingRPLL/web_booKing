@@ -24,6 +24,18 @@
                 <div class="well">
                     <form class="form-horizontal" action="Register" method="POST">
                         <h3>Your Personal Details</h3>
+                        <%
+                            String warningRegister = (String) request.getAttribute("warningRegister");
+                            if (warningRegister != null) {
+
+
+                        %>
+                        <div class="control-group">
+                            <p style="color:red"><strong><%=warningRegister%></strong></p>
+                        </div>
+                        <%                       }
+
+                        %>
                         <div class="control-group">
                             <label class="control-label" for="firstName">First name <sup>*</sup></label>
                             <div class="controls">

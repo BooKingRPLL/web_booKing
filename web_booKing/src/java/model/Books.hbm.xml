@@ -26,6 +26,9 @@
         <property name="price" type="java.lang.Integer">
             <column name="price" />
         </property>
+        <property name="qty" type="java.lang.Integer">
+            <column name="qty" />
+        </property>
         <set name="genreses" table="genre_lists" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="book_id" length="20" not-null="true" />

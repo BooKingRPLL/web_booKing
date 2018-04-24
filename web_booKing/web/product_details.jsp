@@ -4,8 +4,8 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.BookDAO"%>
 <%@page import="controller.CurrencyConverter"%>
-<%@page import="controller.UserDAO"%>
 <%@page import="model.Books"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,19 +44,19 @@
                         </div>
                         <div class="span7">
                             <%
-                                UserDAO userDAO = new UserDAO();
+                                BookDAO bookDAO = new BookDAO();
                                 String bookID = (String) request.getParameter("id");
-                                Books book = userDAO.getBookByID(bookID);
-                                
+                                Books book = bookDAO.getBookByID(bookID);
                             %>
                             <h3><%=book.getTitle()%></h3>
                             <hr class="soft"/>
 
-                            <form class="form-horizontal qtyFrm">
+                            <form class="form-horizontal qtyFrm" action=<%="\"AddToCart?id=" + book.getBookId() + "\""%> method="POST">
                                 <div class="control-group">
                                     <label class="control-label"><span>Price : <br><%=CurrencyConverter.split(book.getPrice())%></span></label>
                                     <div class="controls">
-                                        <input type="number" class="span6" placeholder="Qty.">
+                                        <label class="control-label"><span>Stock : <%=book.getQty()%><br></span></label>
+                                        <input type="number" class="span6" placeholder="Qty." name="qty" min="0" max=<%="\"" + book.getQty() + "\""%>>
                                     </div>
                                 </div>
                                 <h4>Overview</h4>
@@ -64,7 +64,14 @@
                                     <%= book.getSynopsis()%>
                                 </p>
                                 <button type="submit" class="shopBtn"><span class=" icon-shopping-cart"></span> Add to cart</button>
-
+                                <%
+                                    String warningAddToCart = (String) request.getAttribute("warningAddToCart");
+                                    if (warningAddToCart != null) {
+                                %>
+                                <br>
+                                <p style="color:red"><strong><%=warningAddToCart%></strong></p>
+                                <%                                    }
+                                %>
                             </form>
                         </div>
                     </div>

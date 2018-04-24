@@ -78,8 +78,8 @@ public class Register extends HttpServlet {
             throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
         Customers newCustomer = new Customers();
-        Random random = new Random(); 
-        
+        Random random = new Random();
+
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("inputEmail");
@@ -87,20 +87,47 @@ public class Register extends HttpServlet {
         String address = request.getParameter("address");
         String password = request.getParameter("password");
         String confirmPassword = request.getParameter("confirmPassword");
-        
-        newCustomer.setAddress(address);
-        newCustomer.setEmail(email);
-        newCustomer.setName(firstName+" "+lastName);
-        newCustomer.setPassword(password);
-        newCustomer.setPhoneNum(phoneNumber);
-        newCustomer.setUserId(Double.toString(random.nextDouble()));
-        
-        if (userDAO.register(newCustomer)) {
-            request.setAttribute("email", email);
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.include(request, response);
+
+        if (!firstName.equals("") && !email.equals("") && !phoneNumber.equals("") && !address.equals("") && !password.equals("") && !confirmPassword.equals("")) {
+            /*semua field harus diisi*/
+            if (!userDAO.checkEmail(email)) {
+                /* Check email sudah ada atau belum */
+                if (phoneNumber.matches("[0-9]")) {
+                    /* regex phone number */
+                    if (password.equals(confirmPassword)) {
+                        /* check password dan confirm password */
+                        newCustomer.setAddress(address);
+                        newCustomer.setEmail(email);
+                        newCustomer.setName(firstName + " " + lastName);
+                        newCustomer.setPassword(password);
+                        newCustomer.setPhoneNum(phoneNumber);
+                        newCustomer.setUserId(Double.toString(random.nextDouble()));
+                        if (userDAO.register(newCustomer)) {
+                            request.setAttribute("email", email);
+                            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                            rd.include(request, response);
+                        } else {
+                            request.setAttribute("warningRegister", "Register gagal!");
+                            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                            rd.include(request, response);
+                        }
+                    } else {
+                        request.setAttribute("warningRegister", "Password dan Confirm Password tidak cocok!");
+                        RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                        rd.include(request, response);
+                    }
+                } else {
+                    request.setAttribute("warningRegister", "Phone number tidak valid!");
+                    RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                    rd.include(request, response);
+                }
+            } else {
+                request.setAttribute("warningRegister", "Email sudah terdaftar!");
+                RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+                rd.include(request, response);
+            }
         } else {
-            request.setAttribute("warning", "Register gagal!");
+            request.setAttribute("warningRegister", "Lengkapi field yang tersedia!");
             RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
             rd.include(request, response);
         }

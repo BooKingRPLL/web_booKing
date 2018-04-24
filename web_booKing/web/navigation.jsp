@@ -4,9 +4,9 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.BookDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Genres"%>
-<%@page import="controller.AdminDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,9 +15,9 @@
                 <div class="well well-small">
                     <ul class="nav nav-list">
                         <%
-                            AdminDAO adminDAO = new AdminDAO();
+                            BookDAO bookDAO = new BookDAO();
                             ArrayList<Genres> genres = new ArrayList<Genres>();
-                            genres = adminDAO.getAllGenres();
+                            genres = bookDAO.getAllGenres();
                             for(int i=0;i<genres.size();i++){
                         %>
                             <li><a href="grid-view.jsp"><span class="icon-chevron-right"></span><%=genres.get(i).getGenre()%></a></li>
