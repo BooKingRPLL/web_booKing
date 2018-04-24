@@ -4,6 +4,8 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.UserDAO"%>
+<%@page import="model.Customers"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,12 +38,29 @@
                             <h3>Your Account :</h3>
                             <hr class="soft"/>
 
+                            <%
+                                Customers customer = new Customers();
+                                UserDAO userDAO = new UserDAO();
+                                String email = "";
+                                Cookie cookie[] = request.getCookies();
+                                if (cookie != null) {
+                                    for (int i = 0; i < cookie.length; i++) {
+                                        if(cookie[i].getName().equals("email")){
+                                            email = cookie[i].getValue();
+                                            break;
+                                        }
+                                    }
+                                }
+                                System.out.println(email);
+                                customer = userDAO.getCustomerByEmail(email);
+                            %>
+
                             <form class="form-horizontal qtyFrm">
                                 <table class="table table-striped">
                                     <tbody>
-                                        <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2">Harry </td></tr>
-                                        <tr class="techSpecRow"><td class="techSpecTD1">Address:</td><td class="techSpecTD2">Jl. Dipatiukur 200</td></tr>
-                                        <tr class="techSpecRow"><td class="techSpecTD1">E-mail:</td><td class="techSpecTD2">ithb.ac.id</td></tr>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">Name:</td><td class="techSpecTD2"><%=customer.getName()%> </td></tr>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">Address:</td><td class="techSpecTD2"><%=customer.getAddress()%></td></tr>
+                                        <tr class="techSpecRow"><td class="techSpecTD1">E-mail:</td><td class="techSpecTD2"><%=customer.getEmail()%></td></tr>
                                     </tbody>
                                 </table>
                             </form>

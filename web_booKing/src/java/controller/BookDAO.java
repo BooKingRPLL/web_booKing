@@ -68,7 +68,7 @@ public class BookDAO {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
         Books book = BookDAO.getBookByID(bookID);
-        Query q = session.createQuery("from Authors where author_id = '"+book.getAuthors().getAuthorId()+"'");
+        Query q = session.createQuery("from Authors where author_id = '" + book.getAuthors().getAuthorId() + "'");
         ArrayList<Authors> list = (ArrayList) q.list();
 
         tx.commit();
@@ -91,20 +91,30 @@ public class BookDAO {
     public static ArrayList<Books> getAllBooks() {
         Session session = DBConnector.getFactory().openSession();
 
-        Query q = session.createQuery("from Books");
+        Query q = session.createQuery("from Books where deleted='0'");
         ArrayList<Books> list = (ArrayList) q.list();
 
         session.close();
         return list;
     }
 
+        public static ArrayList<Books> getAllBooksAdmin() {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Books");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        session.close();
+        return list;
+    }
+    
     public static ArrayList<Books> getBooksByTitle(String title) {
         DBConnector.getFactory();
         dbcon.connect();
         Session session = dbcon.getSession();
         Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from Books where title like '%" + title + "%'");
+        Query q = session.createQuery("from Books where title like '%" + title + "%' and deleted='0'");
         ArrayList<Books> list = (ArrayList) q.list();
 
         tx.commit();
@@ -149,7 +159,7 @@ public class BookDAO {
         for (int i = 0; i < authors.size(); i++) {
             books = new ArrayList<Books>();
             q = session.createQuery("from Books where author_id = '" + authors.get(i).getAuthorId()
-                    + "'");
+                    + "' and deleted='0'");
             books = (ArrayList) q.list();
             for (int j = 0; j < books.size(); j++) {
                 result.add(books.get(j));
@@ -158,4 +168,17 @@ public class BookDAO {
         session.close();
         return result;
     }
+
+    public static boolean deleteBook(String bookID) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Books newBook = (Books) session.get(Books.class, bookID);
+        newBook.setDeleted(true);
+
+        tx.commit();
+        session.close();
+        return true;
+    }
+
 }

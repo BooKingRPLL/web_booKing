@@ -36,9 +36,7 @@
                                 status_login = true;
                             }
                         }
-                    %>
-                        <a class=<%=home%> href="index.jsp?"> <span class="icon-home"></span> Home</a> 
-                    <%
+                   
                         if (onPage.equals("home")) {
                             home = "active";
                             myAccount = null;
@@ -82,12 +80,14 @@
                         }
                         if(status_login){
                     %>
+                        <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a> 
                         <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
                         <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
                         <a href="Logout"> Log Out</a>
                     <%
                         }else{
                     %>
+                        <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a> 
                         <a class=<%=login%> href="login.jsp"> Login </a>
                         <a class=<%=register%> href="register.jsp"> Register </a> 
                     <%        

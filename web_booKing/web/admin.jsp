@@ -32,27 +32,33 @@
                                 <th></th>
                             </tr>
                         </thead>
-                         <%
-                                BookDAO bookDAO = new BookDAO();
-                                ArrayList<Books> newBooks = new ArrayList<Books>();
-                                newBooks = bookDAO.getAllBooks();
-                                for (int i = 0; i < newBooks.size(); i++) {
-                            %>
+                        <%
+                            BookDAO bookDAO = new BookDAO();
+                            ArrayList<Books> newBooks = new ArrayList<Books>();
+                            newBooks = bookDAO.getAllBooksAdmin();
+                            for (int i = 0; i < newBooks.size(); i++) {
+                        %>
                         <tbody>
                             <tr>
                                 <td><p><%=newBooks.get(i).getBookId()%></p></td>
                                 <td><p><%=newBooks.get(i).getTitle()%></p></td>
+                                <%
+                                    if (newBooks.get(i).getDeleted()) {
+                                        out.println("<td>Deleted</td>");
+                                    } else {
+                                %>
                                 <td>
-                                    <a href ="add_book.jsp"><button type="submit">Update</button></a> 
-                                    <input type="submit" value="Delete"/>
+                                    <a href ="update_book.jsp"><button type="submit">Update</button></a> 
+                                    <a href =<%="\"DeleteBook?id=" + newBooks.get(i).getBookId() + "\""%>><button type="submit">Delete</button></a> 
                                 </td>
+                                <%}%>
                             </tr>
                         </tbody>
-                         <%
-                                }
-                            %>
+                        <%
+                            }
+                        %>
                     </table><br/>
-                    
+
                 </div>
             </div>
         </div>

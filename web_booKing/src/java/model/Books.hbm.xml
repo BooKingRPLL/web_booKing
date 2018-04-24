@@ -29,6 +29,9 @@
         <property name="qty" type="java.lang.Integer">
             <column name="qty" />
         </property>
+        <property name="deleted" type="boolean">
+            <column name="deleted" />
+        </property>
         <set name="genreses" table="genre_lists" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="book_id" length="20" not-null="true" />

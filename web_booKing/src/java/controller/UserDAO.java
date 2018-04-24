@@ -22,15 +22,15 @@ import org.hibernate.Transaction;
  *
  */
 public class UserDAO {
+
     public static DBConnector dbcon = new DBConnector();
 
-            
-    public UserDAO(){
+    public UserDAO() {
         dbcon = new DBConnector();
     }
-    
+
     public static boolean loginCust(String email, String password) {
-     return true;   
+        return true;
     }
 
     public static boolean login(String email, String password) {
@@ -51,7 +51,7 @@ public class UserDAO {
         session.close();
         return found;
     }
-    
+
     public static boolean checkEmail(String email) {
 
         Session session = DBConnector.getFactory().openSession();
@@ -67,7 +67,7 @@ public class UserDAO {
         session.close();
         return found;
     }
-    
+
     public static boolean loginAdmin(String email, String password) {
 
         Session session = DBConnector.getFactory().openSession();
@@ -86,8 +86,8 @@ public class UserDAO {
         session.close();
         return found;
     }
-    
-     public static boolean changePassword(Customers c, String oldPass, String newPass) {
+
+    public static boolean changePassword(Customers c, String oldPass, String newPass) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
@@ -102,8 +102,8 @@ public class UserDAO {
             return true;
         }
     }
-     
-     public static boolean changeAddress(Customers c, String oldAddress, String newAddress) {
+
+    public static boolean changeAddress(Customers c, String oldAddress, String newAddress) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
@@ -118,7 +118,7 @@ public class UserDAO {
             return true;
         }
     }
-     
+
     public static boolean register(Customers c) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -127,7 +127,7 @@ public class UserDAO {
         session.close();
         return true;
     }
-    
+
     public static ArrayList<Customers> getAllCustomers() {
         Session session = DBConnector.getFactory().openSession();
 
@@ -137,9 +137,17 @@ public class UserDAO {
         session.close();
         return list;
     }
-        
 
-    
+    public static Customers getCustomerByEmail(String email) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Customers where email = '"+email+"'");
+        ArrayList<Customers> list = (ArrayList) q.list();
+
+        session.close();
+        return list.get(0);
+    }
+
     public static ArrayList<Transactions> getAllTransactions() {
         Session session = DBConnector.getFactory().openSession();
         Query q = session.createQuery("from Transactions");
@@ -153,26 +161,26 @@ public class UserDAO {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from Transactions where user_id = '"+user_id+"'");
+        Query q = session.createQuery("from Transactions where user_id = '" + user_id + "'");
         ArrayList<Transactions> list = (ArrayList) q.list();
-        
+
         tx.commit();
         session.close();
         return list;
     }
-    
-    public static ArrayList<TransLists> getTransLists(String trans_id){
+
+    public static ArrayList<TransLists> getTransLists(String trans_id) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from TransLists where trans_id = '"+trans_id+"'");
+        Query q = session.createQuery("from TransLists where trans_id = '" + trans_id + "'");
         ArrayList<TransLists> list = (ArrayList) q.list();
-        
+
         tx.commit();
         session.close();
         return list;
     }
-    
+
     public static void main(String args[]) {
         UserDAO userDAO = new UserDAO();
         userDAO.tesLogin();
@@ -219,7 +227,6 @@ public class UserDAO {
 //        dbcon.disconnect();
 //        return list;
 //    }
-
     public static void tesRegister() {
         Customers c = new Customers();
         c.setAddress("tki tes 3");

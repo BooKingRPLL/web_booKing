@@ -27,6 +27,14 @@
                         <div class="well">
                             <h5>LOGIN</h5>
                             <form action="Login" method="POST">
+                                <%String warningLogin = (String) request.getAttribute("warningLogin");
+                                    if (warningLogin != null) {
+                                %>
+                                <label class="control-label" style="color:red"><%=warningLogin%></label>
+                                <%
+                                    }
+                                %>
+
                                 <div class="control-group">
                                     <label class="control-label" for="inputEmail">Email</label>
                                     <div class="controls">
@@ -49,7 +57,7 @@
                                         <button type="submit" class="defaultBtn" >Sign in</button> <a href="#">Forget password?</a>
                                     </div>
                                 </div>
-                                
+
                             </form>
                         </div>
                     </div>
