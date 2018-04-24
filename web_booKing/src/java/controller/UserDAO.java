@@ -48,6 +48,22 @@ public class UserDAO {
         return found;
     }
     
+    public static boolean checkEmail(String email) {
+
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Customers where email = '" + email + "'");
+
+        Iterator it = q.iterate();
+        Customers cust;
+        boolean found = false;
+        if (it.hasNext()) {
+            found = true;
+        }
+        session.close();
+        return found;
+    }
+    
     public static boolean loginAdmin(String email, String password) {
 
         Session session = DBConnector.getFactory().openSession();
