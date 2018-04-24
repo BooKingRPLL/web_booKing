@@ -17,9 +17,10 @@
     %>
     <body>
         <jsp:include page="header.jsp" flush="true" />
+        <jsp:include page="search.jsp" flush="true" />
         <div class="row">
             <jsp:include page="navigation.jsp" flush="true" />
-            <jsp:include page="search.jsp" flush="true" />
+            
             <div class="span9">
                 <div class="well well-small">
                     <h3>Our Collections </h3>

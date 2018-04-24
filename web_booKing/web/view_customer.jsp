@@ -34,16 +34,16 @@
                         </thead>
                         <%
                                 UserDAO userDAO = new UserDAO();
-                                ArrayList<Customers> newBooks = new ArrayList<Customers>();
-                                newBooks = userDAO.getAllCustomers();
-                                for (int i = 0; i < newBooks.size(); i++) {
+                                ArrayList<Customers> newCustomers = new ArrayList<Customers>();
+                                newCustomers = userDAO.getAllCustomers();
+                                for (int i = 0; i < newCustomers.size(); i++) {
                             %>
                         <tbody>
                             <tr>
-                                <td><p><%=newBooks.get(i).getUserId()%></p></td>
-                                <td><p><%=newBooks.get(i).getName()%></p></td>
-                                <td><p><%=newBooks.get(i).getAddress()%></p></td>
-                                <td><p><%=newBooks.get(i).getEmail()%></p></td>
+                                <td><p><%=newCustomers.get(i).getUserId()%></p></td>
+                                <td><p><%=newCustomers.get(i).getName()%></p></td>
+                                <td><p><%=newCustomers.get(i).getAddress()%></p></td>
+                                <td><p><%=newCustomers.get(i).getEmail()%></p></td>
                             </tr>
                         </tbody>
                           <%
