@@ -7,9 +7,12 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import model.Admins;
 import model.Books;
 import model.Customers;
 import model.Genres;
+import model.TransLists;
+import model.Transactions;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,16 +23,18 @@ import org.hibernate.Transaction;
  */
 public class UserDAO {
 
-    public static DBConnector dbcon = new DBConnector();
-
-    public static boolean login(String email, String password) {
+    public static DBConnector dbcon;
+            
+    public UserDAO(){
+        dbcon = new DBConnector();
+    }
+    
+    public static boolean loginCust(String email, String password) {
 
         Session session = DBConnector.getFactory().openSession();
-//        Transaction tx = session.beginTransaction();
 
         Query q = session.createQuery("from Customers where email = '" + email + "'");
 
-//        tx.commit();
         Iterator it = q.iterate();
         Customers cust;
         boolean found = false;
@@ -41,29 +46,29 @@ public class UserDAO {
         }
         session.close();
         return found;
-//        session.close();
-//        dbcon.disconnect();
-//        if (found) {
-//            return true;
-//        }
-//        return false;
     }
+    
+    public static boolean loginAdmin(String email, String password) {
 
-    public static boolean register(Customers c) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
-        session.save(c);
-        tx.commit();
-        dbcon.disconnect();
-        return true;
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Admins where email = '" + email + "'");
+
+        Iterator it = q.iterate();
+        Admins admin;
+        boolean found = false;
+        if (it.hasNext()) {
+            admin = (Admins) it.next();
+            if (admin.getPassword().equals(password)) {
+                found = true;
+            }
+        }
+        session.close();
+        return found;
     }
-
-    public static boolean changePassword(Customers c, String oldPass, String newPass) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+    
+     public static boolean changePassword(Customers c, String oldPass, String newPass) {
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         Customers newCust = (Customers) session.get(Customers.class, c.getUserId());
@@ -73,15 +78,13 @@ public class UserDAO {
             newCust.setPassword(newPass);
 
             tx.commit();
-            dbcon.disconnect();
+            session.close();
             return true;
         }
     }
-
-    public static boolean changeAddress(Customers c, String oldAddress, String newAddress) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+     
+     public static boolean changeAddress(Customers c, String oldAddress, String newAddress) {
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         Customers newCust = (Customers) session.get(Customers.class, c.getUserId());
@@ -91,92 +94,69 @@ public class UserDAO {
             newCust.setPassword(newAddress);
 
             tx.commit();
-            dbcon.disconnect();
+            session.close();
             return true;
         }
     }
-
-    public static ArrayList<Books> getAllBooks() {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+     
+    public static boolean register(Customers c) {
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from Books");
-        ArrayList<Books> list = (ArrayList) q.list();
-
+        session.save(c);
         tx.commit();
-        dbcon.disconnect();
+        session.close();
+        return true;
+    }
+    
+    public static ArrayList<Customers> getAllCustomers() {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Customers");
+        ArrayList<Customers> list = (ArrayList) q.list();
+
+        session.close();
+        return list;
+    }
+    
+    public static ArrayList<Transactions> getAllTransactions() {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Transactions");
+        ArrayList<Transactions> list = (ArrayList) q.list();
+
+        session.close();
         return list;
     }
 
-    public static Books getBookByID(String id) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+    public static ArrayList<Transactions> getTransactionsByUser(String user_id) {
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from Books where book_id='"+id+"'");
-        ArrayList<Books> list = (ArrayList) q.list();
-
+        Query q = session.createQuery("from Transactions where user_id = '"+user_id+"'");
+        ArrayList<Transactions> list = (ArrayList) q.list();
+        
         tx.commit();
-        dbcon.disconnect();
-        return list.get(0);
+        session.close();
+        return list;
     }
+    
+    public static ArrayList<TransLists> getTransLists(String trans_id){
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
 
-    public static void getBooksByGenre() {
-
+        Query q = session.createQuery("from TransLists where trans_id = '"+trans_id+"'");
+        ArrayList<TransLists> list = (ArrayList) q.list();
+        
+        tx.commit();
+        session.close();
+        return list;
     }
-
-    public static void getBooksByAuthor() {
-
-    }
-
-    public static void getTransactionsByUser() {
-
-    }
-
-//    public static String getGenre(String g) {
-//        DBConnector.getFactory();
-//        dbcon.connect();
-//        Session session = dbcon.getSession();
-//        Transaction tx = session.beginTransaction();
-//
-//        Query q = session.createQuery("from Genres where genre = '" + g + "'");
-//
-//        tx.commit();
-//
-//        Iterator it = q.iterate();
-//        Genres genre;
-//        String g_id = "";
-//        boolean found = false;
-//        if (it.hasNext()) {
-//            genre = (Genres) it.next();
-//            if (genre.getGenre().equals(g)) {
-//                g_id = genre.getGenreId();
-//            }
-//        }
-//        dbcon.disconnect();
-//        return g_id;
-//    }
-//    
-//    public static ArrayList<Books> getBooksByGenre(String g) {
-//        String g_id = getGenre(g);
-//        
-//        DBConnector.getFactory();
-//        dbcon.connect();
-//        Session session = dbcon.getSession();
-//        Transaction tx = session.beginTransaction();
-//        
-//        Query q = session.createQuery("from Books where genre_id");
-//        ArrayList<Books> list = (ArrayList) q.list();
-//
-//        tx.commit();
-//        dbcon.disconnect();
-//        return list;
-//    }
+    
     public static void main(String args[]) {
-        tesLogin();
+        UserDAO userDAO = new UserDAO();
+        userDAO.tesLogin();
+        System.out.println(userDAO.getTransLists("T0000000003"));
+        System.out.println(userDAO.getAllCustomers());
     }
 
     public static void tesRegister() {
@@ -191,10 +171,10 @@ public class UserDAO {
     }
 
     public static void tesLogin() {
-        System.out.println(login("cust1@gmail.com", "3105"));
-        System.out.println(login("cust232@gmail.com", "3105"));
-        System.out.println(login("cust1@gmail.com", "310512"));
-        System.out.println(login("cust121@gmail.com", "310512"));
+        System.out.println(loginCust("cust1@gmail.com", "3105"));
+        System.out.println(loginCust("cust232@gmail.com", "3105"));
+        System.out.println(loginCust("cust1@gmail.com", "310512"));
+        System.out.println(loginCust("cust121@gmail.com", "310512"));
     }
 
     public static void tesChangePass() {

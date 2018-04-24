@@ -5,7 +5,6 @@
  */
 package servlet;
 
-import controller.AdminDAO;
 import controller.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,7 +77,6 @@ public class Register extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO userDAO = new UserDAO();
-        AdminDAO adminDAO = new AdminDAO();
         Customers newCustomer = new Customers();
         Random random = new Random(); 
         

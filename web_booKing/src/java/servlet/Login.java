@@ -77,7 +77,7 @@ public class Login extends HttpServlet {
         UserDAO userDAO = new UserDAO();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        if (userDAO.login(email, password)) {
+        if (userDAO.loginCust(email, password)) {
             request.setAttribute("email", email);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.include(request, response);

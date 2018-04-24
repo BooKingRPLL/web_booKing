@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static controller.UserDAO.dbcon;
 import model.Books;
 import model.Customers;
 import model.Status;
@@ -18,21 +17,27 @@ import org.hibernate.Transaction;
  * @author Tuyu
  */
 public class TransactionsDAO {
+    
+    public static DBConnector dbcon;
+            
+    public TransactionsDAO(){
+        dbcon = new DBConnector();
+    }
+    
+    
     public static boolean generatePayment(Transactions t) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
+        
         session.save(t);
+        
         tx.commit();
-        dbcon.disconnect();
+        session.disconnect();
         return true;
     }
     
-    public static boolean changeAddress(Transactions t, Status oldStatus, Status newStatus) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
+    public static boolean changeStatus(Transactions t, Status oldStatus, Status newStatus) {
+        Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
         Transactions newTrans = (Transactions) session.get(Transactions.class, t.getTransId());
@@ -42,7 +47,7 @@ public class TransactionsDAO {
             newTrans.setStatus(newStatus);
 
             tx.commit();
-            dbcon.disconnect();
+            session.close();
             return true;
         }
     }
