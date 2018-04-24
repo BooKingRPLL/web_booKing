@@ -41,9 +41,15 @@
                                 </div>
                                 <div class="control-group">
                                     <div class="controls">
+                                        <input type="checkbox" name="cbx_admin" value="Admin"> Admin<br>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="controls">
                                         <button type="submit" class="defaultBtn" >Sign in</button> <a href="#">Forget password?</a>
                                     </div>
                                 </div>
+                                
                             </form>
                         </div>
                     </div>

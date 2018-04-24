@@ -4,6 +4,9 @@
     Author     : Sujana
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Books"%>
+<%@page import="controller.BookDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,22 +29,30 @@
                             <tr>
                                 <th>ID Book</th>
                                 <th>Book Name</th>
-                                <th>Title</th>
                                 <th></th>
                             </tr>
                         </thead>
+                         <%
+                                BookDAO bookDAO = new BookDAO();
+                                ArrayList<Books> newBooks = new ArrayList<Books>();
+                                newBooks = bookDAO.getAllBooks();
+                                for (int i = 0; i < newBooks.size(); i++) {
+                            %>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Evan</td>
-                                <td>B01</td>
+                                <td><p><%=newBooks.get(i).getBookId()%></p></td>
+                                <td><p><%=newBooks.get(i).getTitle()%></p></td>
                                 <td>
-                                    <form action="update_book.jsp"><input type="submit" value="Update"/></form>
+                                    <a href ="add_book.jsp"><button type="submit">Update</button></a> 
                                     <input type="submit" value="Delete"/>
                                 </td>
                             </tr>
                         </tbody>
+                         <%
+                                }
+                            %>
                     </table><br/>
+                    
                 </div>
             </div>
         </div>

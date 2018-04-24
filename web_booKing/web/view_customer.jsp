@@ -4,6 +4,9 @@
     Author     : Sujana
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Customers"%>
+<%@page import="controller.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,14 +32,23 @@
                                 <th>Email</th>
                             </tr>
                         </thead>
+                        <%
+                                UserDAO userDAO = new UserDAO();
+                                ArrayList<Customers> newBooks = new ArrayList<Customers>();
+                                newBooks = userDAO.getAllCustomers();
+                                for (int i = 0; i < newBooks.size(); i++) {
+                            %>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Evan</td>
-                                <td>Rahayu</td>
-                                <td>aw@gmail.com</td>
+                                <td><p><%=newBooks.get(i).getUserId()%></p></td>
+                                <td><p><%=newBooks.get(i).getName()%></p></td>
+                                <td><p><%=newBooks.get(i).getAddress()%></p></td>
+                                <td><p><%=newBooks.get(i).getEmail()%></p></td>
                             </tr>
                         </tbody>
+                          <%
+                                }
+                            %>
                     </table><br/>
                 </div>
             </div>

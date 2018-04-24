@@ -19,6 +19,7 @@
 
         %>
         <jsp:include page="header.jsp" flush="true" />
+        <jsp:include page="search.jsp" flush="true" />
         <div class="row">
             <jsp:include page="navigation.jsp" flush="true" />
             <div class="span9">
@@ -65,7 +66,7 @@
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href=<%="\"product_details.jsp?id="+newBooks.get(i).getBookId()+"\""%>><img src="assets/img/buku3.jpg" alt=""></a>
+                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
                                         <p><%=newBooks.get(i).getTitle()%></p>
                                         <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
@@ -95,7 +96,7 @@
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href=<%="\"product_details.jsp?id="+popularBooks.get(i).getBookId()+"\""%>><img src="assets/img/buku3.jpg" alt=""></a>
+                                    <a href=<%="\"product_details.jsp?id=" + popularBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
                                         <p><%=popularBooks.get(i).getTitle()%></p>
                                         <p><strong> <%=CurrencyConverter.split(popularBooks.get(i).getPrice())%></strong></p>
