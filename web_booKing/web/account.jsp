@@ -16,7 +16,7 @@
             <jsp:include page="navigation.jsp" flush="true" />
             <div class="span9">
                 <ul class="breadcrumb">
-                    <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                    <li><a href="index.jsp">Home</a> <span class="divider">/</span></li>
                     <li class="active">Account</li>
                 </ul>	
                 <div class="well well-small">
