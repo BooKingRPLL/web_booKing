@@ -75,12 +75,10 @@ public class Search extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        UserDAO userDAO = new UserDAO();
-        String name = request.getParameter("bookName");
-        String tipe = request.getParameter("bookType");
-        request.setAttribute("id", name);
-        request.setAttribute("type", tipe);
-        System.out.println("tipe : "+tipe);
+        String bookTitle = request.getParameter("bookTitle");
+        String bookType = request.getParameter("bookType");
+        request.setAttribute("bookTitle", bookTitle);
+        request.setAttribute("bookType", bookType);
         RequestDispatcher rd = request.getRequestDispatcher("list-view.jsp");
         rd.include(request, response);
 
