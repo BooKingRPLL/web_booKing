@@ -5,6 +5,7 @@
  */
 package controller;
 
+import static controller.UserDAO.dbcon;
 import java.util.ArrayList;
 import model.Authors;
 import model.Books;
@@ -19,12 +20,13 @@ import org.hibernate.Transaction;
  * @author Tuyu
  */
 public class BookDAO {
+
     public static DBConnector dbcon;
-            
-    public BookDAO(){
+
+    public BookDAO() {
         dbcon = new DBConnector();
     }
-    
+
     public static boolean insertBook(Books b) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -33,7 +35,7 @@ public class BookDAO {
         session.close();
         return true;
     }
-    
+
     public static boolean changePrice(Books b, int oldPrice, int newPrice) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -49,7 +51,7 @@ public class BookDAO {
             return true;
         }
     }
-    
+
     public static ArrayList<Authors> getAllAuthors() {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -61,7 +63,7 @@ public class BookDAO {
         session.close();
         return list;
     }
-    
+
     public static ArrayList<Genres> getAllGenres() {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -73,7 +75,7 @@ public class BookDAO {
         session.close();
         return list;
     }
-    
+
     public static ArrayList<Books> getAllBooks() {
         Session session = DBConnector.getFactory().openSession();
 
@@ -83,17 +85,58 @@ public class BookDAO {
         session.close();
         return list;
     }
-    
+
+    public static ArrayList<Books> getBooksByID(String id) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where book_id='" + id + "'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list;
+    }
+
+    public static ArrayList<Books> getBooksByTitle(String title) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where title like '%" + title + "%'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list;
+    }
+
+//    public static ArrayList<Books> getBooksByAuthor(String id) {
+//        DBConnector.getFactory();
+//        dbcon.connect();
+//        Session session = dbcon.getSession();
+//        Transaction tx = session.beginTransaction();
+//
+//        Query q = session.createQuery("from Books where author_id='" + id + "'");
+//        ArrayList<Books> list = (ArrayList) q.list();
+//
+//        tx.commit();
+//        dbcon.disconnect();
+//        return list;
+//    }
     public static Books getBookByID(String id) {
         Session session = DBConnector.getFactory().openSession();
 
-        Query q = session.createQuery("from Books where book_id='"+id+"'");
+        Query q = session.createQuery("from Books where book_id='" + id + "'");
         ArrayList<Books> list = (ArrayList) q.list();
 
         session.close();
         return list.get(0);
     }
-    
+
     public static Books getBooksByGenre(String genre) {
         return null;
     }

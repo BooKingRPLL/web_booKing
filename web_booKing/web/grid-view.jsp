@@ -4,6 +4,7 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.BookDAO"%>
 <%@page import="controller.CurrencyConverter"%>
 <%@page import="controller.UserDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -24,9 +25,9 @@
                     <div class="row-fluid">
                         <ul class="thumbnails">
                             <%
-                                UserDAO userDAO = new UserDAO();
+                                BookDAO bookDAO = new BookDAO();
                                 ArrayList<Books> newBooks = new ArrayList<Books>();
-                                newBooks = userDAO.getAllBooks();
+                                newBooks = bookDAO.getAllBooks();
                                 for (int i = 0; i < newBooks.size(); i++) {
                             %>
                             <li class="span4">

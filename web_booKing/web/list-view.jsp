@@ -4,10 +4,10 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.BookDAO"%>
 <%@page import="controller.CurrencyConverter"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Books"%>
-<%@page import="controller.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,16 +21,17 @@
             <div class="span9">
                 <div class="well well-small">
                     <%
-                        UserDAO userDAO = new UserDAO();
+                        BookDAO bookDAO = new BookDAO();
                         ArrayList<Books> newBooks = new ArrayList<Books>();
-                        String tipe = (String) request.getParameter("type");
-                        String name = (String) request.getParameter("id");
-                        System.out.println("test : "+tipe);
-                        if(tipe == "Title"){
-                            newBooks = userDAO.getBooksByID(name);
-                        }else if(tipe == "Author"){
-                            newBooks = userDAO.getBooksByAuthor(name);
-                            System.out.println(newBooks);
+                        newBooks = bookDAO.getAllBooks();
+                        String bookType = (String) request.getAttribute("bookType");
+                        String bookTitle = (String) request.getAttribute("bookTitle");
+                        if (bookTitle != null) {
+                            if (bookType.equals("Title")) {
+                                newBooks = bookDAO.getBooksByTitle(bookTitle);
+                            } else if (bookType.equals("Author")) {
+
+                            }
                         }
                         for (int i = 0; i < newBooks.size(); i++) {
                     %>
@@ -49,11 +50,11 @@
                                 <h3> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></h3>
                                 <br>
                                 <div class="btn-group">
-                                    <a href=<%="\"product_details.jsp?id="+newBooks.get(i).getBookId()+"\""%> class="defaultBtn">
+                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%> class="defaultBtn">
                                         <span class=" icon-shopping-cart"></span> 
                                         Add to cart
                                     </a>
-                                    <a href=<%="\"product_details.jsp?id="+newBooks.get(i).getBookId()+"\""%> class="shopBtn">VIEW</a>
+                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%> class="shopBtn">VIEW</a>
                                 </div>
                             </form>
                         </div>

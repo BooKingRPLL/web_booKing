@@ -138,19 +138,7 @@ public class UserDAO {
         return list;
     }
         
-    public static ArrayList<Books> getBooksByID(String id) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from Books where book_id='" + id + "'");
-        ArrayList<Books> list = (ArrayList) q.list();
-
-        tx.commit();
-        dbcon.disconnect();
-        return list;
-    }
     
     public static ArrayList<Transactions> getAllTransactions() {
         Session session = DBConnector.getFactory().openSession();
@@ -170,34 +158,6 @@ public class UserDAO {
         
         tx.commit();
         session.close();
-        return list;
-    }
-    
-    public static ArrayList<Books> getBooksByTitle(String title) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from Books where title like '%" + title + "%'");
-        ArrayList<Books> list = (ArrayList) q.list();
-
-        tx.commit();
-        dbcon.disconnect();
-        return list;
-    }
-
-    public static ArrayList<Books> getBooksByAuthor(String id) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from Books where author_id='" + id + "'");
-        ArrayList<Books> list = (ArrayList) q.list();
-
-        tx.commit();
-        dbcon.disconnect();
         return list;
     }
     
@@ -287,10 +247,6 @@ public class UserDAO {
         c.setPhoneNum("085125123");
         c.setUserId("8");
         System.out.println(changePassword(c, "3105", "310597123"));
-    }
-
-    public static void SearchP() {
-        System.out.println(getBooksByTitle("Ready Player"));
     }
 
 }
