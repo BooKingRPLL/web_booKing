@@ -23,7 +23,15 @@
                     <%
                         UserDAO userDAO = new UserDAO();
                         ArrayList<Books> newBooks = new ArrayList<Books>();
-                        newBooks = userDAO.getAllBooks();
+                        String tipe = (String) request.getParameter("type");
+                        String name = (String) request.getParameter("id");
+                        System.out.println("test : "+tipe);
+                        if(tipe == "Title"){
+                            newBooks = userDAO.getBooksByID(name);
+                        }else if(tipe == "Author"){
+                            newBooks = userDAO.getBooksByAuthor(name);
+                            System.out.println(newBooks);
+                        }
                         for (int i = 0; i < newBooks.size(); i++) {
                     %>
                     <div class="row-fluid">	  

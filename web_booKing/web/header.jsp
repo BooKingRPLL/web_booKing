@@ -102,8 +102,12 @@
                                 <li class=""><a href="list-view.jsp">List View</a></li>
                                 <li class=""><a href="grid-view.jsp">Grid View</a></li>
                             </ul>
-                            <form action="#" class="navbar-search pull-left">
-                                <input type="text" placeholder="Search" class="search-query span2">
+                            <form action="Search" class="navbar-search pull-left" method="POST">
+                                <input type="text" id="typeBook" name="bookName" placeholder="Search" class="search-query span2">
+                                <select id="bookType" name="bookType">
+                                    <option value="Title">Title</option>
+                                    <option value="Author">Author</option>
+                                </select>
                                 <button>Search</button>
                             </form>
                         </div>

@@ -22,14 +22,18 @@ import org.hibernate.Transaction;
  *
  */
 public class UserDAO {
+    public static DBConnector dbcon = new DBConnector();
 
-    public static DBConnector dbcon;
             
     public UserDAO(){
         dbcon = new DBConnector();
     }
     
     public static boolean loginCust(String email, String password) {
+     return true;   
+    }
+
+    public static boolean login(String email, String password) {
 
         Session session = DBConnector.getFactory().openSession();
 
@@ -133,10 +137,23 @@ public class UserDAO {
         session.close();
         return list;
     }
+        
+    public static ArrayList<Books> getBooksByID(String id) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where book_id='" + id + "'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list;
+    }
     
     public static ArrayList<Transactions> getAllTransactions() {
         Session session = DBConnector.getFactory().openSession();
-
         Query q = session.createQuery("from Transactions");
         ArrayList<Transactions> list = (ArrayList) q.list();
 
@@ -153,6 +170,34 @@ public class UserDAO {
         
         tx.commit();
         session.close();
+        return list;
+    }
+    
+    public static ArrayList<Books> getBooksByTitle(String title) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where title like '%" + title + "%'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list;
+    }
+
+    public static ArrayList<Books> getBooksByAuthor(String id) {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Books where author_id='" + id + "'");
+        ArrayList<Books> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
         return list;
     }
     
@@ -174,6 +219,46 @@ public class UserDAO {
         System.out.println(userDAO.getTransLists("T0000000003"));
         System.out.println(userDAO.getAllCustomers());
     }
+
+//    public static String getGenre(String g) {
+//        DBConnector.getFactory();
+//        dbcon.connect();
+//        Session session = dbcon.getSession();
+//        Transaction tx = session.beginTransaction();
+//
+//        Query q = session.createQuery("from Genres where genre = '" + g + "'");
+//
+//        tx.commit();
+//
+//        Iterator it = q.iterate();
+//        Genres genre;
+//        String g_id = "";
+//        boolean found = false;
+//        if (it.hasNext()) {
+//            genre = (Genres) it.next();
+//            if (genre.getGenre().equals(g)) {
+//                g_id = genre.getGenreId();
+//            }
+//        }
+//        dbcon.disconnect();
+//        return g_id;
+//    }
+//    
+//    public static ArrayList<Books> getBooksByGenre(String g) {
+//        String g_id = getGenre(g);
+//        
+//        DBConnector.getFactory();
+//        dbcon.connect();
+//        Session session = dbcon.getSession();
+//        Transaction tx = session.beginTransaction();
+//        
+//        Query q = session.createQuery("from Books where genre_id");
+//        ArrayList<Books> list = (ArrayList) q.list();
+//
+//        tx.commit();
+//        dbcon.disconnect();
+//        return list;
+//    }
 
     public static void tesRegister() {
         Customers c = new Customers();
@@ -203,4 +288,9 @@ public class UserDAO {
         c.setUserId("8");
         System.out.println(changePassword(c, "3105", "310597123"));
     }
+
+    public static void SearchP() {
+        System.out.println(getBooksByTitle("Ready Player"));
+    }
+
 }
