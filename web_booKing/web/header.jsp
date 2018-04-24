@@ -31,9 +31,11 @@
                         boolean status_login = false;
                         String onPage = (String) request.getAttribute("onPage");
                         String cek = (String) request.getAttribute("login");
-//                        if(cek.equals("true")){
-//                            status_login = true;
-//                        }
+                        if(cek!=null){
+                            if(cek.equals("true")){
+                                status_login = true;
+                            }
+                        }
                     %>
                         <a class=<%=home%> href="index.jsp?"> <span class="icon-home"></span> Home</a> 
                     <%
@@ -82,6 +84,7 @@
                     %>
                         <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
                         <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
+                        <a href="Logout"> Log Out</a>
                     <%
                         }else{
                     %>
