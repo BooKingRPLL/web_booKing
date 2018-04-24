@@ -21,6 +21,7 @@ import org.hibernate.Transaction;
  * @author Tuyu
  */
 public class AdminDAO {
+
     public static ArrayList<Customers> getAllCustomers() {
         DBConnector.getFactory();
         dbcon.connect();
@@ -34,7 +35,21 @@ public class AdminDAO {
         dbcon.disconnect();
         return list;
     }
-    
+
+    public static Customers getLastRegisteredCustomer() {
+        DBConnector.getFactory();
+        dbcon.connect();
+        Session session = dbcon.getSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Customers order by user_id desc");
+        ArrayList<Customers> list = (ArrayList) q.list();
+
+        tx.commit();
+        dbcon.disconnect();
+        return list.get(0);
+    }
+
     public static ArrayList<Transactions> getAllTransactions() {
         DBConnector.getFactory();
         dbcon.connect();
@@ -48,7 +63,7 @@ public class AdminDAO {
         dbcon.disconnect();
         return list;
     }
-    
+
     public static boolean insertBook(Books b) {
         DBConnector.getFactory();
         dbcon.connect();
@@ -59,7 +74,7 @@ public class AdminDAO {
         dbcon.disconnect();
         return true;
     }
-    
+
     public static boolean changePrice(Books b, int oldPrice, int newPrice) {
         DBConnector.getFactory();
         dbcon.connect();
@@ -77,8 +92,8 @@ public class AdminDAO {
             return true;
         }
     }
-    
-     public static ArrayList<Authors> getAllAuthors() {
+
+    public static ArrayList<Authors> getAllAuthors() {
         DBConnector.getFactory();
         dbcon.connect();
         Session session = dbcon.getSession();
@@ -91,7 +106,7 @@ public class AdminDAO {
         dbcon.disconnect();
         return list;
     }
-    
+
     public static ArrayList<Genres> getAllGenres() {
         DBConnector.getFactory();
         dbcon.connect();
