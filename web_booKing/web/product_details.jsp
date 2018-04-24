@@ -4,6 +4,7 @@
     Author     : Sujana
 --%>
 
+<%@page import="model.Authors"%>
 <%@page import="controller.BookDAO"%>
 <%@page import="controller.CurrencyConverter"%>
 <%@page import="model.Books"%>
@@ -47,6 +48,8 @@
                                 BookDAO bookDAO = new BookDAO();
                                 String bookID = (String) request.getParameter("id");
                                 Books book = bookDAO.getBookByID(bookID);
+                                Authors author = bookDAO.getAuthorByBookID(bookID);
+                                
                             %>
                             <h3><%=book.getTitle()%></h3>
                             <hr class="soft"/>
@@ -87,6 +90,7 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Nama Buku:</td><td class="techSpecTD2"><%=book.getTitle()%></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Author:</td><td class="techSpecTD2"><%=author.getAuthor()%></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Tahun Terbit:</td><td class="techSpecTD2"><%=book.getYear()%></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Tebal Buku:</td><td class="techSpecTD2"><%=book.getPage()%></td></tr>
                                 </tbody>

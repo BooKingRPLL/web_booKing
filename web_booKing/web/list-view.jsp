@@ -24,13 +24,13 @@
                         BookDAO bookDAO = new BookDAO();
                         ArrayList<Books> newBooks = new ArrayList<Books>();
                         newBooks = bookDAO.getAllBooks();
-                        String bookType = (String) request.getAttribute("bookType");
-                        String bookTitle = (String) request.getAttribute("bookTitle");
-                        if (bookTitle != null) {
-                            if (bookType.equals("Title")) {
-                                newBooks = bookDAO.getBooksByTitle(bookTitle);
-                            } else if (bookType.equals("Author")) {
-
+                        String searchType = (String) request.getAttribute("searchType");
+                        String inputSearch = (String) request.getAttribute("inputSearch");
+                        if (inputSearch != null) {
+                            if (searchType.equals("Title")) {
+                                newBooks = bookDAO.getBooksByTitle(inputSearch);
+                            } else if (searchType.equals("Author")) {
+                                newBooks = bookDAO.getBooksByAuthor(inputSearch);
                             }
                         }
                         for (int i = 0; i < newBooks.size(); i++) {

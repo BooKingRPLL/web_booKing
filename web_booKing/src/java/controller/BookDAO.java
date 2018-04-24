@@ -64,6 +64,18 @@ public class BookDAO {
         return list;
     }
 
+    public static Authors getAuthorByBookID(String bookID) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+        Books book = BookDAO.getBookByID(bookID);
+        Query q = session.createQuery("from Authors where author_id = '"+book.getAuthors().getAuthorId()+"'");
+        ArrayList<Authors> list = (ArrayList) q.list();
+
+        tx.commit();
+        session.close();
+        return list.get(0);
+    }
+
     public static ArrayList<Genres> getAllGenres() {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -83,20 +95,6 @@ public class BookDAO {
         ArrayList<Books> list = (ArrayList) q.list();
 
         session.close();
-        return list;
-    }
-
-    public static ArrayList<Books> getBooksByID(String id) {
-        DBConnector.getFactory();
-        dbcon.connect();
-        Session session = dbcon.getSession();
-        Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from Books where book_id='" + id + "'");
-        ArrayList<Books> list = (ArrayList) q.list();
-
-        tx.commit();
-        dbcon.disconnect();
         return list;
     }
 
@@ -141,15 +139,23 @@ public class BookDAO {
         return null;
     }
 
-    public static Books getBooksByAuthor(String authName) {
-//        Session session = DBConnector.getFactory().openSession();
-//
-//        Query q = session.createQuery("from Author where author = '"+authName+"'");
-//        ArrayList<Authors> list = (ArrayList) q.list();
-//        
-//        
-//
-//        session.close();
-        return null;
+    public static ArrayList<Books> getBooksByAuthor(String authName) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Authors where author like '%" + authName + "%'");
+        ArrayList<Authors> authors = (ArrayList) q.list();
+        ArrayList<Books> books;
+        ArrayList<Books> result = new ArrayList<Books>();
+        for (int i = 0; i < authors.size(); i++) {
+            books = new ArrayList<Books>();
+            q = session.createQuery("from Books where author_id = '" + authors.get(i).getAuthorId()
+                    + "'");
+            books = (ArrayList) q.list();
+            for (int j = 0; j < books.size(); j++) {
+                result.add(books.get(j));
+            }
+        }
+        session.close();
+        return result;
     }
 }

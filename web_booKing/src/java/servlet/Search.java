@@ -75,10 +75,10 @@ public class Search extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String bookTitle = request.getParameter("bookTitle");
-        String bookType = request.getParameter("bookType");
-        request.setAttribute("bookTitle", bookTitle);
-        request.setAttribute("bookType", bookType);
+        String inputSearch = request.getParameter("inputSearch");
+        String searchType = request.getParameter("searchType");
+        request.setAttribute("inputSearch", inputSearch);
+        request.setAttribute("searchType", searchType);
         RequestDispatcher rd = request.getRequestDispatcher("list-view.jsp");
         rd.include(request, response);
 
