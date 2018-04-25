@@ -145,7 +145,7 @@ public class BookDAO {
         return list.get(0);
     }
 
-    public static Books getBooksByGenre(String genre) {
+    public static ArrayList<Books> getBooksByGenre(String genre) {
         return null;
     }
 

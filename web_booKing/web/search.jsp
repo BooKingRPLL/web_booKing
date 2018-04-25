@@ -14,8 +14,7 @@
 
                         <div class="nav-collapse">
                             <ul class="nav">
-                                <li class=""><a href="list-view.jsp">List View</a></li>
-                                <li class=""><a href="grid-view.jsp">Grid View</a></li>
+                                <li class=""><span style="display:inline-block; width: 200px;"></span></li>
                             </ul>
                             <form action="Search" class="navbar-search pull-left" method="POST">
                                 <input type="text" id="typeBook" name="inputSearch" placeholder="Search">

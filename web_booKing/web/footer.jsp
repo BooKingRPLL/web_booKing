@@ -12,8 +12,6 @@
             <div class="span2">
                 <h5>Your Account</h5>
                 <a href="#">YOUR ACCOUNT</a><br>
-                <a href="#">PERSONAL INFORMATION</a><br>
-                <a href="#">ADDRESSES</a><br>
                 <a href="#">ORDER HISTORY</a><br>
             </div>
             <div class="span2">
@@ -25,8 +23,7 @@
             <div class="span2">
                 <h5>Our Offer</h5>
                 <a href="#">NEW PRODUCTS</a> <br>
-                <a href="#">TOP SELLERS</a><br>
-                <a href="#">SPECIALS</a><br>
+                <a href="#">OUR COLLECTIONS</a><br>
             </div>
             <div class="span6">
                 <h5>The standard chunk of Lorem</h5>

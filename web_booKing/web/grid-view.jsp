@@ -20,7 +20,7 @@
         <jsp:include page="search.jsp" flush="true" />
         <div class="row">
             <jsp:include page="navigation.jsp" flush="true" />
-            
+
             <div class="span9">
                 <div class="well well-small">
                     <h3>Our Collections </h3>
@@ -30,12 +30,16 @@
                                 BookDAO bookDAO = new BookDAO();
                                 ArrayList<Books> newBooks = new ArrayList<Books>();
                                 newBooks = bookDAO.getAllBooks();
+                                String genre = request.getParameter("genre");
+                                if (genre != null) {
+                                    newBooks = bookDAO.getBooksByGenre(genre);
+                                }
                                 for (int i = 0; i < newBooks.size(); i++) {
                             %>
                             <li class="span4">
                                 <div class="thumbnail">
                                     <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href=<%="\"product_details.jsp?id="+newBooks.get(i).getBookId()+"\""%>><img src="assets/img/buku3.jpg" alt=""></a>
+                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
                                     <div class="caption cntr">
                                         <p><%=newBooks.get(i).getTitle()%></p>
                                         <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
