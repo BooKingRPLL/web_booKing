@@ -22,77 +22,87 @@
             <div class="topNav">
                 <div class="container">
                     <div class="alignR">
-                    <%
-                        String home = "active";
-                        String myAccount = null;
-                        String login = null;
-                        String register = null;
-                        String shoppingCart = null;
-                        boolean status_login = false;
-                        String onPage = (String) request.getAttribute("onPage");
-                        String cek = (String) request.getAttribute("login");
-                        if(cek!=null){
-                            if(cek.equals("true")){
-                                status_login = true;
+                        <%
+                            String home = "active";
+                            String myAccount = null;
+                            String login = null;
+                            String register = null;
+                            String shoppingCart = null;
+                            boolean status_login = false;
+                            String onPage = (String) request.getAttribute("onPage");
+                            String cek = (String) request.getAttribute("login");
+    //                        if(cek!=null){
+    //                            if(cek.equals("true")){
+    //                                status_login = true;
+    //                            }
+    //                        }
+                            Cookie cookie[] = request.getCookies();
+                            if (cookie != null) {
+                                for (int i = 0; i < cookie.length; i++) {
+                                    if (cookie[i].getName().equals("email")) {
+                                        if(!cookie[i].getValue().equals("")){
+                                            status_login = true;
+                                        }
+                                    }
+                                }
                             }
-                        }
-                   
-                        if (onPage.equals("home")) {
-                            home = "active";
-                            myAccount = null;
-                            login = null;
-                            register = null;
-                            shoppingCart = null;
-                        } else if (onPage.equals("myAccount")) {
-                            home = null;
-                            myAccount = "active";
-                            login = null;
-                            register = null;
-                            shoppingCart = null;
-                            status_login = true;
-                        } else if (onPage.equals("login")) {
-                            home = null;
-                            myAccount = null;
-                            login = "active";
-                            register = null;
-                            shoppingCart = null;
-                            status_login = false;
-                        } else if (onPage.equals("register")) {
-                            home = null;
-                            myAccount = null;
-                            login = null;
-                            register = "active";
-                            shoppingCart = null;
-                            status_login = false;
-                        } else if (onPage.equals("shoppingCart")) {
-                            home = null;
-                            myAccount = null;
-                            login = null;
-                            register = null;
-                            shoppingCart = "active";
-                            status_login = true;
-                        } else {
-                            home = "active";
-                            myAccount = null;
-                            login = null;
-                            register = null;
-                            shoppingCart = null;
-                        }
-                        if(status_login){
-                    %>
+
+                            if (onPage.equals("home")) {
+                                home = "active";
+                                myAccount = null;
+                                login = null;
+                                register = null;
+                                shoppingCart = null;
+                            } else if (onPage.equals("myAccount")) {
+                                home = null;
+                                myAccount = "active";
+                                login = null;
+                                register = null;
+                                shoppingCart = null;
+                                status_login = true;
+                            } else if (onPage.equals("login")) {
+                                home = null;
+                                myAccount = null;
+                                login = "active";
+                                register = null;
+                                shoppingCart = null;
+                                status_login = false;
+                            } else if (onPage.equals("register")) {
+                                home = null;
+                                myAccount = null;
+                                login = null;
+                                register = "active";
+                                shoppingCart = null;
+                                status_login = false;
+                            } else if (onPage.equals("shoppingCart")) {
+                                home = null;
+                                myAccount = null;
+                                login = null;
+                                register = null;
+                                shoppingCart = "active";
+                                status_login = true;
+                            } else {
+                                home = "active";
+                                myAccount = null;
+                                login = null;
+                                register = null;
+                                shoppingCart = null;
+                            }
+                            if (status_login) {
+                        %>
                         <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a>   
                         <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
                         <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
                         <a href="Logout"> Log Out</a>
-                    <%
-                        }else{
-                    %>
+                        <%
+                        } else {
+                        %>
                         <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a> 
                         <a class=<%=login%> href="login.jsp"> Login </a>
                         <a class=<%=register%> href="register.jsp"> Register </a> 
-                    <%        
-                        }
-                    %>  
+                        <%
+                            }
+                        %>  
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.CurrencyConverter"%>
 <%@page import="model.TransLists"%>
 <%@page import="model.TransLists"%>
 <%@page import="model.Transactions"%>
@@ -63,7 +64,7 @@
                                 <td><img width="100" src="assets/img/buku1.jpg" alt=""></td>
                                 <td><%= b.getTitle()%></td>
                                 <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
-                                <td><%= b.getPrice()%></td>
+                                <td><%= CurrencyConverter.split(b.getPrice())%></td>
                                 <td>
                                     <%= transList.get(i).getQuantity()%>
                                     <!--                                    <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">

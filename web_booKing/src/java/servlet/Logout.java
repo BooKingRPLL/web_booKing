@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -39,7 +40,7 @@ public class Logout extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Logout</title>");            
+            out.println("<title>Servlet Logout</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Logout at " + request.getContextPath() + "</h1>");
@@ -63,6 +64,27 @@ public class Logout extends HttpServlet {
 //        processRequest(request, response);
         request.removeAttribute("email");
         request.removeAttribute("login");
+        Cookie cookie[] = request.getCookies();
+        if (cookie != null) {
+            for (int i = 0; i < cookie.length; i++) {
+                if(cookie[i].getName().equals("email")){
+                    Cookie c = new Cookie("email", "");
+                    response.addCookie(c);
+                }
+                if(cookie[i].getName().equals("userid")){
+                    Cookie c = new Cookie("userid", "");
+                    response.addCookie(c);
+                }
+            }
+        }
+//        Cookie ck=new Cookie("name","");  
+//        ck.setMaxAge(0);  
+//        response.addCookie(ck);
+//        
+//        ck=new Cookie("name","");  
+//        ck.setMaxAge(0);  
+//        response.addCookie(ck);  
+
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
         rd.include(request, response);
     }
