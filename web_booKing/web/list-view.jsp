@@ -51,7 +51,19 @@
                                 <h3> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></h3>
                                 <br>
                                 <div class="btn-group">
-                                     <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
+                                    <form action="Login" method="POST"><%
+                                        String login = (String) request.getAttribute("login");
+                                        if (login == "true") {
+                                        %>
+                                        <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4> 
+                                        <%
+                                        } else {
+                                        %>
+                                        <h4><a class="shopBtn" href="login.jsp" title="add to cart"> Add to cart </a></h4>
+                                        <%
+                                            }
+                                        %>
+                                        <br class="clr"></form>
                                 </div>
                             </form>
                         </div>

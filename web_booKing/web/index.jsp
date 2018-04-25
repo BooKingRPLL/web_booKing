@@ -53,8 +53,7 @@
                     <div class="row-fluid">
                         <form action="addToCart" method="POST">
                             <ul class="thumbnails">
-                                <%
-                                    BookDAO bookDAO = new BookDAO();
+                                <%                                    BookDAO bookDAO = new BookDAO();
                                     ArrayList<Books> newBooks = new ArrayList<Books>();
                                     newBooks = bookDAO.getAllBooks();
                                     for (int i = 0; i < newBooks.size(); i++) {
@@ -66,8 +65,20 @@
                                         <div class="caption cntr">
                                             <p><%=newBooks.get(i).getTitle()%></p>
                                             <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
-                                            <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
-                                            <br class="clr">
+                                            <form action="Login" method="POST"><%
+                                                String login = (String) request.getAttribute("login");
+                                                if (login == "true") {
+                                                %>
+                                                <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4> 
+                                                <%
+                                                } else {
+                                                %>
+                                                <h4><a class="shopBtn" href="login.jsp" title="add to cart"> Add to cart </a></h4>
+                                                <%
+                                                    }
+                                                %>
+                                                <br class="clr"></form>
+
                                         </div>
                                     </div>
                                 </li>
