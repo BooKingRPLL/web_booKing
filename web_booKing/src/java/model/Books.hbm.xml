@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 4, 2018 9:48:00 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 25, 2018 10:13:22 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.Books" table="books" catalog="book_king" optimistic-lock="version">
         <id name="bookId" type="string">
@@ -30,7 +30,7 @@
             <column name="qty" />
         </property>
         <property name="deleted" type="boolean">
-            <column name="deleted" />
+            <column name="deleted" not-null="true" />
         </property>
         <set name="genreses" table="genre_lists" inverse="false" lazy="true" fetch="select">
             <key>
