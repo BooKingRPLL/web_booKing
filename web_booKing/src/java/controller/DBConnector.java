@@ -14,12 +14,14 @@ import org.hibernate.cfg.Configuration;
  * 
  */
 public class DBConnector {
-    static SessionFactory factory;
+    static SessionFactory factory = null;
     private static Session session;
     
     public DBConnector(){
         try{
-            setFactory(new Configuration().configure().buildSessionFactory());
+            if(factory==null){
+                setFactory(new Configuration().configure().buildSessionFactory());
+            }
         }catch(Exception e){
             
         }
