@@ -52,7 +52,7 @@ public class UserDAO {
         return found;
     }
     
-    public static Customers getUser(String email) {
+    public static Customers getCustomer(String email) {
 
         Session session = DBConnector.getFactory().openSession();
 
@@ -68,6 +68,27 @@ public class UserDAO {
         session.close();
         if(found){
             return cust;
+        }else{
+            return null;
+        }
+    }
+    
+    public static Admins getAdmin(String email) {
+
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Admins where email = '" + email + "'");
+
+        Iterator it = q.iterate();
+        Admins admin = null;
+        boolean found = false;
+        if (it.hasNext()) {
+            found=true;
+            admin = (Admins) it.next();
+        }
+        session.close();
+        if(found){
+            return admin;
         }else{
             return null;
         }
