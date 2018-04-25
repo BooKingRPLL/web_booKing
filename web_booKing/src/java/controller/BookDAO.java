@@ -5,6 +5,7 @@
  */
 package controller;
 
+import static controller.DBConnector.getSession;
 import static controller.UserDAO.dbcon;
 import java.util.ArrayList;
 import model.Authors;
@@ -12,8 +13,10 @@ import model.Books;
 import model.Customers;
 import model.Genres;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import util.HibernateUtil;
 
 /**
  *
@@ -33,6 +36,25 @@ public class BookDAO {
         session.save(b);
         tx.commit();
         session.close();
+        return true;
+    }
+
+    public static boolean insertGenreLists(String bookID, String genreID) {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            Books book = (Books)session.get(Books.class, bookID);
+            Genres genre = (Genres)session.get(Genres.class, genreID);
+            book.getGenreses().add( genre );
+            session.save( book );
+            transaction.commit();
+        } catch( Exception e ) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         return true;
     }
 
@@ -98,7 +120,7 @@ public class BookDAO {
         return list;
     }
 
-        public static ArrayList<Books> getAllBooksAdmin() {
+    public static ArrayList<Books> getAllBooksAdmin() {
         Session session = DBConnector.getFactory().openSession();
 
         Query q = session.createQuery("from Books");
@@ -107,7 +129,7 @@ public class BookDAO {
         session.close();
         return list;
     }
-    
+
     public static ArrayList<Books> getBooksByTitle(String title) {
         DBConnector.getFactory();
         dbcon.connect();
@@ -175,6 +197,23 @@ public class BookDAO {
 
         Books newBook = (Books) session.get(Books.class, bookID);
         newBook.setDeleted(true);
+
+        tx.commit();
+        session.close();
+        return true;
+    }
+
+    public static boolean updateBook(String bookName, String sysnopsis, String year, String page, String price, String qty, String bookID) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Books newBook = (Books) session.get(Books.class, bookID);
+        newBook.setTitle(bookName);
+        newBook.setSynopsis(sysnopsis);
+        newBook.setYear(Integer.parseInt(year));
+        newBook.setPage(Integer.parseInt(page));
+        newBook.setPrice(Integer.parseInt(price));
+        newBook.setQty(Integer.parseInt(qty));
 
         tx.commit();
         session.close();
