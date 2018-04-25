@@ -8,14 +8,19 @@ package controller;
 import static controller.DBConnector.getSession;
 import static controller.UserDAO.dbcon;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import model.Authors;
 import model.Books;
 import model.Customers;
 import model.Genres;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Order;
 import util.HibernateUtil;
 
 /**
@@ -40,16 +45,16 @@ public class BookDAO {
     }
 
     public static boolean insertGenreLists(String bookID, String genreID) {
-         Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = null;
         try {
             transaction = session.beginTransaction();
-            Books book = (Books)session.get(Books.class, bookID);
-            Genres genre = (Genres)session.get(Genres.class, genreID);
-            book.getGenreses().add( genre );
-            session.save( book );
+            Books book = (Books) session.get(Books.class, bookID);
+            Genres genre = (Genres) session.get(Genres.class, genreID);
+            book.getGenreses().add(genre);
+            session.save(book);
             transaction.commit();
-        } catch( Exception e ) {
+        } catch (Exception e) {
             transaction.rollback();
             e.printStackTrace();
         } finally {
@@ -167,8 +172,27 @@ public class BookDAO {
         return list.get(0);
     }
 
-    public static ArrayList<Books> getBooksByGenre(String genre) {
-        return null;
+    public static ArrayList<Books> getBooksByGenre(String genreID) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        ArrayList<Books> result = new ArrayList<Books>();
+        try {
+            transaction = session.beginTransaction();
+
+            Genres genre = (Genres) session.get(Genres.class, genreID);
+            Set<Books> book = genre.getBookses();
+
+            for (Iterator<Books> it = book.iterator(); it.hasNext();) {
+                Books tempBook = it.next();
+                result.add(tempBook);
+            }
+        } catch (Exception e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return result;
     }
 
     public static ArrayList<Books> getBooksByAuthor(String authName) {

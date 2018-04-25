@@ -21,7 +21,7 @@
                             genres = bookDAO.getAllGenres();
                             for(int i=0;i<genres.size();i++){
                         %>
-                            <li><a href="grid-view.jsp?genre=<%=genres.get(i).getGenre()%>"><span class="icon-chevron-right"></span><%=genres.get(i).getGenre()%></a></li>
+                            <li><a href="grid-view.jsp?genre=<%=genres.get(i).getGenreId()%>"><span class="icon-chevron-right"></span><%=genres.get(i).getGenre()%></a></li>
                        
                         <%
               
