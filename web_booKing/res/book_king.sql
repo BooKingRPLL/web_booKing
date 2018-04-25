@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2018 at 01:58 AM
+-- Generation Time: Apr 26, 2018 at 01:28 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -90,11 +90,17 @@ CREATE TABLE `books` (
 --
 
 INSERT INTO `books` (`book_id`, `author_id`, `title`, `synopsis`, `year`, `page`, `price`, `qty`, `deleted`) VALUES
+('ASDFAEG', 'A0001', 'ASDF', 'sdf', 1111, 12, 2000, 90, 0),
 ('B0000001', 'A0001', 'Ready Player One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 385, 55000, 5, 1),
-('B0000002', 'A0001', 'Ready Player Two', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 305, 48000, 10, 0),
-('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000, 42, 0),
-('B0000004', 'A0001', 'Ready Player Four', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 383, 46000, 3, 0),
-('B0000005', 'A0002', 'zzz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 10, 5000, 500, 1);
+('B00000010', 'A0003', 'buku terkahir', 'zxc', 1, 1, 1, 2, 0),
+('B0000002', 'A0001', 'Ready', 'Lorem', 2012, 305, 1000, 7, 0),
+('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000, 14, 0),
+('B0000004', 'A0001', 'Ready Player Four', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 383, 46000, 3, 1),
+('B0000005', 'A0002', 'zzz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 10, 5000, 500, 1),
+('B0000006', 'A0002', 'Buku 5', 'no comment', 1998, 10, 1500, 18, 0),
+('B0000007', 'A0003', 'Buku 6', 'nonono', 1990, 200, 20050, 10, 0),
+('B0000008', 'A0001', 'Buku 7', 'asdf', 1000, 20, 9000, 90, 0),
+('ccc', 'A0002', 'ccc', 'ccc', 12, 12, 12, 12, 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +123,6 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`user_id`, `name`, `password`, `email`, `address`, `phone_num`) VALUES
 ('1', 'customer 1', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
-('10', 'a a', 'a', NULL, NULL, 'a'),
 ('2', 'customer 2', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
 ('3', 'customer 3', '3105', 'cust2@gmail.com', 'tki 2', '08123456789'),
 ('4', 'customer 4', '3105', 'cust3@gmail.com', 'tki 3', '08123456789'),
@@ -167,6 +172,8 @@ CREATE TABLE `genre_lists` (
 INSERT INTO `genre_lists` (`book_id`, `genre_id`) VALUES
 ('B0000001', 'G0001'),
 ('B0000002', 'G0001'),
+('ccc', 'G0001'),
+('ccc', 'G0002'),
 ('B0000001', 'G0004'),
 ('B0000003', 'G0004'),
 ('B0000001', 'G0005');
@@ -211,6 +218,13 @@ CREATE TABLE `transactions` (
 --
 
 INSERT INTO `transactions` (`trans_id`, `user_id`, `trans_date`, `status_id`) VALUES
+('0.2051113068026118', '3', '2018-04-25 05:22:14', 'S00002'),
+('0.32787296874575744', '8', '2018-04-25 04:46:44', 'S00001'),
+('0.5372548766665268', '5', '2018-04-25 04:54:46', 'S00001'),
+('0.6856441919391082', '7', '2018-04-25 05:00:37', 'S00001'),
+('0.7096483728053355', '4', '2018-04-25 04:47:26', 'S00001'),
+('0.7486641690792286', '3', '2018-04-25 05:21:30', 'S00002'),
+('0.9233871598312635', '3', '2018-04-25 22:43:03', 'S00001'),
 ('T0000000001', '1', '2018-04-04 23:22:34', 'S00001'),
 ('T0000000002', '1', '2018-04-04 23:22:34', 'S00001'),
 ('T0000000003', '2', '2018-04-04 23:22:34', 'S00002'),
@@ -226,21 +240,35 @@ INSERT INTO `transactions` (`trans_id`, `user_id`, `trans_date`, `status_id`) VA
 CREATE TABLE `trans_lists` (
   `trans_id` varchar(20) NOT NULL,
   `book_id` varchar(20) NOT NULL,
-  `quantity` int(11) DEFAULT NULL
+  `quantity` int(11) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `trans_lists`
 --
 
-INSERT INTO `trans_lists` (`trans_id`, `book_id`, `quantity`) VALUES
-('T0000000001', 'B0000001', 1),
-('T0000000002', 'B0000003', 1),
-('T0000000003', 'B0000002', 1),
-('T0000000003', 'B0000003', 2),
-('T0000000004', 'B0000003', 5),
-('T0000000005', 'B0000001', 5),
-('T0000000005', 'B0000002', 1);
+INSERT INTO `trans_lists` (`trans_id`, `book_id`, `quantity`, `deleted`) VALUES
+('0.2051113068026118', 'ASDFAEG', 4, 0),
+('0.32787296874575744', 'B0000006', 2, 0),
+('0.5372548766665268', 'B00000010', 3, 0),
+('0.6856441919391082', 'ASDFAEG', 2, 0),
+('0.7096483728053355', 'ASDFAEG', 8, 0),
+('0.7486641690792286', 'ASDFAEG', 4, 0),
+('0.9233871598312635', 'B00000010', 2, 0),
+('0.9233871598312635', 'B0000002', 4, 0),
+('0.9233871598312635', 'B0000003', 16, 0),
+('0.9233871598312635', 'B0000006', 2, 0),
+('T0000000001', 'ASDFAEG', 3, 0),
+('T0000000001', 'B0000001', 1, 0),
+('T0000000001', 'B00000010', 2, 0),
+('T0000000001', 'B0000006', 4, 0),
+('T0000000002', 'B0000003', 1, 0),
+('T0000000003', 'B0000002', 1, 0),
+('T0000000003', 'B0000003', 2, 0),
+('T0000000004', 'B0000003', 5, 0),
+('T0000000005', 'B0000001', 5, 0),
+('T0000000005', 'B0000002', 1, 0);
 
 --
 -- Indexes for dumped tables

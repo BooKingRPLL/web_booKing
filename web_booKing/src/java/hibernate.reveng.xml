@@ -2,13 +2,13 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="book_king"/>
-  <table-filter match-name="authors"/>
-  <table-filter match-name="books"/>
-  <table-filter match-name="genre_lists"/>
-  <table-filter match-name="customers"/>
-  <table-filter match-name="genres"/>
-  <table-filter match-name="trans_lists"/>
-  <table-filter match-name="status"/>
   <table-filter match-name="transactions"/>
+  <table-filter match-name="genre_lists"/>
+  <table-filter match-name="books"/>
+  <table-filter match-name="authors"/>
+  <table-filter match-name="genres"/>
   <table-filter match-name="admins"/>
+  <table-filter match-name="trans_lists"/>
+  <table-filter match-name="customers"/>
+  <table-filter match-name="status"/>
 </hibernate-reverse-engineering>

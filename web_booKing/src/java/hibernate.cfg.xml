@@ -8,8 +8,8 @@
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
-    <mapping resource="model/Transactions.hbm.xml"/>
     <mapping resource="model/Admins.hbm.xml"/>
+    <mapping resource="model/Transactions.hbm.xml"/>
     <mapping resource="model/TransLists.hbm.xml"/>
     <mapping resource="model/Status.hbm.xml"/>
     <mapping resource="model/Authors.hbm.xml"/>

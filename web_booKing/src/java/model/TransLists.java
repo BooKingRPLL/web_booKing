@@ -1,5 +1,5 @@
 package model;
-// Generated Apr 25, 2018 10:13:20 AM by Hibernate Tools 4.3.1
+// Generated Apr 26, 2018 6:51:31 AM by Hibernate Tools 4.3.1
 
 
 
@@ -13,21 +13,24 @@ public class TransLists  implements java.io.Serializable {
      private Books books;
      private Transactions transactions;
      private Integer quantity;
+     private boolean deleted;
 
     public TransLists() {
     }
 
 	
-    public TransLists(TransListsId id, Books books, Transactions transactions) {
+    public TransLists(TransListsId id, Books books, Transactions transactions, boolean deleted) {
         this.id = id;
         this.books = books;
         this.transactions = transactions;
+        this.deleted = deleted;
     }
-    public TransLists(TransListsId id, Books books, Transactions transactions, Integer quantity) {
+    public TransLists(TransListsId id, Books books, Transactions transactions, Integer quantity, boolean deleted) {
        this.id = id;
        this.books = books;
        this.transactions = transactions;
        this.quantity = quantity;
+       this.deleted = deleted;
     }
    
     public TransListsId getId() {
@@ -57,6 +60,13 @@ public class TransLists  implements java.io.Serializable {
     
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+    public boolean isDeleted() {
+        return this.deleted;
+    }
+    
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
 
