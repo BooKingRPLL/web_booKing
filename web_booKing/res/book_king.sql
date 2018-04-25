@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2018 at 03:29 PM
+-- Generation Time: Apr 25, 2018 at 01:58 AM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -81,19 +81,20 @@ CREATE TABLE `books` (
   `year` int(11) DEFAULT NULL,
   `page` int(11) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL
+  `qty` int(11) DEFAULT NULL,
+  `deleted` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`book_id`, `author_id`, `title`, `synopsis`, `year`, `page`, `price`, `qty`) VALUES
-('B0000001', 'A0001', 'Ready Player One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 385, 55000, 5),
-('B0000002', 'A0001', 'Ready Player Two', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 305, 48000, 10),
-('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000, 42),
-('B0000004', 'A0001', 'Ready Player Four', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 383, 46000, 3),
-('B0000005', 'A0002', 'zzz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 10, 5000, 500);
+INSERT INTO `books` (`book_id`, `author_id`, `title`, `synopsis`, `year`, `page`, `price`, `qty`, `deleted`) VALUES
+('B0000001', 'A0001', 'Ready Player One', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 385, 55000, 5, 1),
+('B0000002', 'A0001', 'Ready Player Two', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 305, 48000, 10, 0),
+('B0000003', 'A0001', 'Ready Player Three', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2013, 412, 58000, 42, 0),
+('B0000004', 'A0001', 'Ready Player Four', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2012, 383, 46000, 3, 0),
+('B0000005', 'A0002', 'zzz', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut elit turpis. Vivamus imperdiet egestas augue, at lacinia nunc rhoncus eget. Etiam at accumsan sem. Ut sed arcu quis velit fermentum rhoncus. Morbi sem mi, gravida eget libero nec, egestas blandit dolor. Mauris ornare maximus nulla. Duis mi diam, porttitor sit amet pretium nec, luctus at tortor. ', 2011, 10, 5000, 500, 1);
 
 -- --------------------------------------------------------
 
@@ -115,9 +116,6 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`user_id`, `name`, `password`, `email`, `address`, `phone_num`) VALUES
-('0.8040500799193864', ' ', '', '', '', ''),
-('0.8598437708055342', 'vvvv ', '', '', '', ''),
-('0.8705121139943524', ' ', '', '', '', ''),
 ('1', 'customer 1', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
 ('10', 'a a', 'a', NULL, NULL, 'a'),
 ('2', 'customer 2', '3105', 'cust1@gmail.com', 'tki 1', '08123456789'),
