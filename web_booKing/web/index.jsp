@@ -66,7 +66,7 @@
                                         <div class="caption cntr">
                                             <p><%=newBooks.get(i).getTitle()%></p>
                                             <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
-                                            <h4><a class="shopBtn" href="<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
+                                            <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
                                             <br class="clr">
                                         </div>
                                     </div>

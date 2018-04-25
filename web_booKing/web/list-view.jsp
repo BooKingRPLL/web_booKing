@@ -51,11 +51,7 @@
                                 <h3> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></h3>
                                 <br>
                                 <div class="btn-group">
-                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%> class="defaultBtn">
-                                        <span class=" icon-shopping-cart"></span> 
-                                        Add to cart
-                                    </a>
-                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%> class="shopBtn">VIEW</a>
+                                     <h4><a class="shopBtn" href="<%="product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
                                 </div>
                             </form>
                         </div>
