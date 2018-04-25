@@ -4,6 +4,8 @@
     Author     : Sujana
 --%>
 
+<%@page import="controller.BookDAO"%>
+<%@page import="model.Books"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -24,9 +26,14 @@
                         <h3>Update Book:</h3>
                         <hr class="soft"/>
                         <form class="form-horizontal qtyFrm">
+                            <%
+                                String bookID = request.getParameter("id");
+                                Books book = new Books();
+                                book = BookDAO.getBookByID(bookID);
+                            %>
                             <table class="table table-striped">
                                 <tbody>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Author ID:</td><td class="techSpecTD2"><input type="text" name="txt_authorid"></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Author ID:</td><td class="techSpecTD2"><input type="text" name="txt_authorid" value=<%=book.getAuthors().getAuthorId()%>></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Book Name:</td><td class="techSpecTD2"><input type="text" name="txt_bookname"></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Synopsis:</td><td class="techSpecTD2"><input type="text" name="txt_synopsis"></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Year:</td><td class="techSpecTD2"><input type="text" name="txt_year"></td></tr>

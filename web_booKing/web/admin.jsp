@@ -48,7 +48,7 @@
                                     } else {
                                 %>
                                 <td>
-                                    <a href ="update_book.jsp"><button type="submit">Update</button></a> 
+                                    <a href =<%="\"update_book.jsp?id=" + newBooks.get(i).getBookId() + "\""%>"><button type="submit">Update</button></a> 
                                     <a href =<%="\"DeleteBook?id=" + newBooks.get(i).getBookId() + "\""%>><button type="submit">Delete</button></a> 
                                 </td>
                                 <%}%>
