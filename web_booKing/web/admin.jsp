@@ -43,7 +43,7 @@
                                 <td><p><%=newBooks.get(i).getBookId()%></p></td>
                                 <td><p><%=newBooks.get(i).getTitle()%></p></td>
                                 <%
-                                    if (newBooks.get(i).getDeleted()) {
+                                    if (newBooks.get(i).isDeleted()) {
                                         out.println("<td>Deleted</td>");
                                     } else {
                                 %>
