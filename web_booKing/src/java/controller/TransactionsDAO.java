@@ -111,6 +111,23 @@ public class TransactionsDAO {
         session.disconnect();
         return true;
     }
+    
+    public static Status getStatusById(String id) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Status where status_id = '" + id + "'");
+        ArrayList<Status> status = (ArrayList) q.list();
+        session.close();
+        return status.get(0);
+    }
+    public static Customers getCustomerById(String id) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Customers where user_id = '" + id + "'");
+        ArrayList<Customers> status = (ArrayList) q.list();
+        session.close();
+        return status.get(0);
+    }
 
     public static Status getStatusPayed() {
         Session session = DBConnector.getFactory().openSession();

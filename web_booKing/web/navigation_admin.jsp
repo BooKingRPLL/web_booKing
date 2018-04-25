@@ -17,7 +17,6 @@
                         <li><a href="admin.jsp"><span class="icon-chevron-right"></span>Manage Book</a></li>
                         <li><a href="view_customer.jsp"><span class="icon-chevron-right"></span>View Customer</a></li>
                         <li><a href="view_transaction.jsp"><span class="icon-chevron-right"></span>View Transaction</a></li>
-                        <li><a href="manage_transaction.jsp"><span class="icon-chevron-right"></span>Manage Transaction</a></li>
                         
                     </ul>
                 </div>

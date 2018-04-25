@@ -37,6 +37,7 @@
                                 <th>Unit price</th>
                                 <th>Qty </th>
                                 <th>Total</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +73,7 @@
                                                                         </div>-->
                                 </td>
                                 <td><%= (b.getPrice() * transList.get(i).getQuantity())%></td>
+                                <td> <a href =""><button type="submit">Cancel</button></a></td>
                             </tr>
                             <%
                                     }

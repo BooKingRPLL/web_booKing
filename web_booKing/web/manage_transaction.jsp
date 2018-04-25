@@ -4,6 +4,10 @@
     Author     : Sujana
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Transactions"%>
+<%@page import="controller.TransactionsDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,18 +29,23 @@
                             <tr>
                                 <th>ID Transaction</th>
                                 <th>Customer Name</th>
-                                <th>ID Book</th>
-                                <th>Qty</th>
+                                <th>Transaction Date</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
                         </thead>
+                        <%
+                                TransactionsDAO transDAO = new TransactionsDAO();
+                                ArrayList<Transactions> newTransactions = new ArrayList<Transactions>();
+                                newTransactions = transDAO.getAllTransactions();
+                                for (int i = 0; i < newTransactions.size(); i++) {
+                                 
+                            %>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>Evan</td>
-                                <td>B01</td>
-                                <td>2</td>
+                                <td><p><%=newTransactions.get(i).getTransId()%></p></td>
+                                <td><p><%=transDAO.getCustomerById(newTransactions.get(i).getCustomers().getUserId()).getName() %></p></td>                              
+                                <td><p><%=newTransactions.get(i).getTransDate()%></p></td>
                                 <td>
                                     <select id="status" name="status">
                                         <option value="Pending">Pending</option>

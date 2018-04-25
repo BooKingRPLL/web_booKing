@@ -214,6 +214,8 @@ public class BookDAO {
         session.close();
         return result;
     }
+    
+    
 
     public static boolean deleteBook(String bookID) {
         Session session = DBConnector.getFactory().openSession();
