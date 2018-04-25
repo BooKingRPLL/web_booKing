@@ -51,6 +51,27 @@ public class UserDAO {
         session.close();
         return found;
     }
+    
+    public static Customers getUser(String email) {
+
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Customers where email = '" + email + "'");
+
+        Iterator it = q.iterate();
+        Customers cust = null;
+        boolean found = false;
+        if (it.hasNext()) {
+            found=true;
+            cust = (Customers) it.next();
+        }
+        session.close();
+        if(found){
+            return cust;
+        }else{
+            return null;
+        }
+    }
 
     public static boolean checkEmail(String email) {
 
@@ -148,44 +169,11 @@ public class UserDAO {
         return list.get(0);
     }
 
-    public static ArrayList<Transactions> getAllTransactions() {
-        Session session = DBConnector.getFactory().openSession();
-        Query q = session.createQuery("from Transactions");
-        ArrayList<Transactions> list = (ArrayList) q.list();
-
-        session.close();
-        return list;
-    }
-
-    public static ArrayList<Transactions> getTransactionsByUser(String user_id) {
-        Session session = DBConnector.getFactory().openSession();
-        Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from Transactions where user_id = '" + user_id + "'");
-        ArrayList<Transactions> list = (ArrayList) q.list();
-
-        tx.commit();
-        session.close();
-        return list;
-    }
-
-    public static ArrayList<TransLists> getTransLists(String trans_id) {
-        Session session = DBConnector.getFactory().openSession();
-        Transaction tx = session.beginTransaction();
-
-        Query q = session.createQuery("from TransLists where trans_id = '" + trans_id + "'");
-        ArrayList<TransLists> list = (ArrayList) q.list();
-
-        tx.commit();
-        session.close();
-        return list;
-    }
-
     public static void main(String args[]) {
         UserDAO userDAO = new UserDAO();
-        userDAO.tesLogin();
-        System.out.println(userDAO.getTransLists("T0000000003"));
-        System.out.println(userDAO.getAllCustomers());
+        Customers c = userDAO.getCustomerByEmail("tes@gmail.com");
+        System.out.println(c.getEmail());
+       
     }
 
 //    public static String getGenre(String g) {

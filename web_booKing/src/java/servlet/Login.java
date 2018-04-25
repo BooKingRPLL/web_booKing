@@ -92,10 +92,13 @@ public class Login extends HttpServlet {
         if (success) {
 
             request.setAttribute("email", email);
+            
             request.setAttribute("login", "true");
             Cookie cookie = new Cookie("email", email);
+            Cookie cookie1 = new Cookie("userid", userDAO.getUser(email).getUserId());
             cookie.setMaxAge(60 * 60 * 24);
             response.addCookie(cookie);
+            response.addCookie(cookie1);
             if (admin) {
                 RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
                 rd.include(request, response);

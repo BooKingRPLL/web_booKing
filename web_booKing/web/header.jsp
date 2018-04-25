@@ -80,7 +80,7 @@
                         }
                         if(status_login){
                     %>
-                        <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a> 
+                        <a class=<%=home%> href="index.jsp"> <span class="icon-home"></span> Home</a>   
                         <a class=<%=myAccount%> href="account.jsp"><span class="icon-user"></span> My Account</a> 
                         <a class=<%=shoppingCart%> href="cart.jsp"><span class="icon-shopping-cart"></span> Shopping Cart</a>
                         <a href="Logout"> Log Out</a>
