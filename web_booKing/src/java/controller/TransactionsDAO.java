@@ -112,6 +112,24 @@ public class TransactionsDAO {
         return true;
     }
 
+    public static Status getStatusPayed() {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Query q = session.createQuery("from Status where status_id = 'S00002'");
+
+        Iterator it = q.iterate();
+        Status t = null;
+        boolean found = false;
+        if (it.hasNext()) {
+            t = (Status) it.next();
+        }
+
+        tx.commit();
+        session.close();
+        return t;
+    }
+
     public static Status getStatusDefault() {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();

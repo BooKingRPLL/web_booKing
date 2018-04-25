@@ -54,25 +54,27 @@
                                     }
                                 }
                                 Transactions t = transDAO.getTransCartByUser(userid);
-                                ArrayList<TransLists> transList = transDAO.getTransLists(t.getTransId());
-                                for (int i = 0; i < transList.size(); i++) {
-                                    Books b = bookDAO.getBookByID(transList.get(i).getBooks().getBookId());
+                                if (t != null) {
+                                    ArrayList<TransLists> transList = transDAO.getTransLists(t.getTransId());
+                                    for (int i = 0; i < transList.size(); i++) {
+                                        Books b = bookDAO.getBookByID(transList.get(i).getBooks().getBookId());
                             %>
                             <tr>
                                 <td><img width="100" src="assets/img/buku1.jpg" alt=""></td>
-                                <td><%= b.getTitle() %></td>
+                                <td><%= b.getTitle()%></td>
                                 <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
-                                <td><%= b.getPrice() %></td>
+                                <td><%= b.getPrice()%></td>
                                 <td>
-                                    <%= transList.get(i).getQuantity() %>
-<!--                                    <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">
-                                    <div class="input-append">
-                                        <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button"> + </button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
-                                    </div>-->
+                                    <%= transList.get(i).getQuantity()%>
+                                    <!--                                    <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">
+                                                                        <div class="input-append">
+                                                                            <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button"> + </button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
+                                                                        </div>-->
                                 </td>
-                                <td><%= (b.getPrice() * transList.get(i).getQuantity()) %></td>
+                                <td><%= (b.getPrice() * transList.get(i).getQuantity())%></td>
                             </tr>
                             <%
+                                    }
                                 }
                             %>
                         </tbody>
@@ -81,7 +83,16 @@
                     <table class="table table-bordered">
                     </table>		
                     <a href="index.jsp" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
-                    <a href="login.jsp" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
+
+                    <a href=<%= t == null ? ("#") : ("\"Buy\"")%> class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
+                    <%
+                        String buy = (String) request.getAttribute("buy");
+                        if (buy != null) {
+                    %>
+                            <p><%=buy%></p>
+                    <%
+                        }
+                    %>
                 </div>
             </div>
         </div>

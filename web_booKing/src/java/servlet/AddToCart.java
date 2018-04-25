@@ -112,8 +112,7 @@ public class AddToCart extends HttpServlet {
                 trans_list.setBooks(book);
                 trans_list.setQuantity(req_qty);
                 Transactions trans = transDAO.getTransCartByUser(userid);
-                System.out.println("tes:"+userid);
-                System.out.println(trans.getTransDate());
+                
                 if (trans == null) {
                     String email = "";
                     if (cookie != null) {
