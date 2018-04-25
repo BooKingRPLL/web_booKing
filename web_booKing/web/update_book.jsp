@@ -34,10 +34,10 @@
                             <table class="table table-striped">
                                 <tbody>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Author ID:</td><td class="techSpecTD2"><input type="text" name="txt_authorid" value=<%=book.getAuthors().getAuthorId()%>></td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Book Name:</td><td class="techSpecTD2"><input type="text" name="txt_bookname"></td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Synopsis:</td><td class="techSpecTD2"><input type="text" name="txt_synopsis"></td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Year:</td><td class="techSpecTD2"><input type="text" name="txt_year"></td></tr>
-                                    <tr class="techSpecRow"><td class="techSpecTD1">Page:</td><td class="techSpecTD2"><input type="text" name="txt_page"></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Book Name:</td><td class="techSpecTD2"><input type="text" name="txt_bookname" value=<%=book.getTitle()%>></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Synopsis:</td><td class="techSpecTD2"><input type="text" name="txt_synopsis" value=<%=book.getSynopsis()%>></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Year:</td><td class="techSpecTD2"><input type="text" name="txt_year" value=<%=book.getYear()%>></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Page:</td><td class="techSpecTD2"><input type="text" name="txt_page" value=<%=book.getPage()%>></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Price:</td><td class="techSpecTD2"><input type="text" name="txt_price"></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1">Qty:</td><td class="techSpecTD2"><input type="text" name="txt_qty"></td></tr>
                                     <tr class="techSpecRow"><td class="techSpecTD1"><input type="button" name="btn_insert" value="Update"></td></tr>
