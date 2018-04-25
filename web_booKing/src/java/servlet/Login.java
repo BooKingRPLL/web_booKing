@@ -92,10 +92,16 @@ public class Login extends HttpServlet {
         if (success) {
 
             request.setAttribute("email", email);
-            
+
             request.setAttribute("login", "true");
             Cookie cookie = new Cookie("email", email);
-            Cookie cookie1 = new Cookie("userid", userDAO.getUser(email).getUserId());
+            Cookie cookie1 = null;
+            if (checkBox != null) {
+                cookie1 = new Cookie("userid", userDAO.getAdmin(email).getUserId());
+            } else if (userDAO.login(email, password)) {
+                cookie1 = new Cookie("userid", userDAO.getCustomer(email).getUserId());
+            }
+            
             cookie.setMaxAge(60 * 60 * 24);
             response.addCookie(cookie);
             response.addCookie(cookie1);
