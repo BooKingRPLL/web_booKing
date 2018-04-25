@@ -111,8 +111,12 @@ public class AddToCart extends HttpServlet {
                 TransLists trans_list = new TransLists();
                 trans_list.setBooks(book);
                 trans_list.setQuantity(req_qty);
-                Transactions trans = transDAO.getTransCartByUser(userid);
-                
+                book.setQty(book.getQty() - req_qty);
+                bookDAO.updateStock(book);
+
+                Transactions trans = new Transactions();
+                trans = transDAO.getTransCartByUser(userid);
+
                 if (trans == null) {
                     String email = "";
                     if (cookie != null) {
@@ -128,15 +132,22 @@ public class AddToCart extends HttpServlet {
                     new_trans.setTransDate(new Date());
                     new_trans.setTransId(Double.toString(random.nextDouble()));
                     boolean insertTrans = transDAO.insertTrans(new_trans);
-                    
+
                     trans_list.setTransactions(new_trans);
                     trans_list.setId(new TransListsId(new_trans.getTransId(), book.getBookId()));
-                }else{
-                    trans_list.setTransactions(trans);
-                    trans_list.setId(new TransListsId(trans.getTransId(), book.getBookId()));
+                    transDAO.insertTransList(trans_list);
+                } else {
+                    TransLists tempTransactionList = transDAO.getTransListByTransactionAndBook(trans.getTransId(), book.getBookId());
+                    if (tempTransactionList == null) {
+                        trans_list.setTransactions(trans);
+                        trans_list.setId(new TransListsId(trans.getTransId(), book.getBookId()));
+                        transDAO.insertTransList(trans_list);
+                    }else{
+                        tempTransactionList.setQuantity(tempTransactionList.getQuantity()+req_qty);
+                        transDAO.updateTransLists(tempTransactionList);
+                    }
                 }
-                boolean insertTransList = transDAO.insertTransList(trans_list);
-               
+
                 RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.include(request, response);
             }

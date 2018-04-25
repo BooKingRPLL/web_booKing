@@ -101,7 +101,7 @@ public class TransactionsDAO {
         return true;
     }
 
-    public static boolean insertTransList(TransLists t) {
+    public boolean insertTransList(TransLists t) {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
@@ -111,7 +111,7 @@ public class TransactionsDAO {
         session.disconnect();
         return true;
     }
-    
+
     public static Status getStatusById(String id) {
         Session session = DBConnector.getFactory().openSession();
 
@@ -120,6 +120,7 @@ public class TransactionsDAO {
         session.close();
         return status.get(0);
     }
+
     public static Customers getCustomerById(String id) {
         Session session = DBConnector.getFactory().openSession();
 
@@ -163,6 +164,46 @@ public class TransactionsDAO {
         tx.commit();
         session.close();
         return t;
+    }
+
+    public static TransLists getTransListByTransactionAndBook(String transactionID, String bookID) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from TransLists where trans_id = '" + transactionID + "' and book_id = '" + bookID + "'");
+        System.out.println("masuk sampe sini");
+        ArrayList<TransLists> transList = (ArrayList) q.list();
+        session.close();
+        if (transList.size() != 0) {
+            return transList.get(0);
+        }
+        return null;
+    }
+
+    public static void updateTransLists(TransLists transLists) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        TransLists newTransLists = (TransLists) session.get(TransLists.class, transLists.getId());
+        newTransLists.setQuantity(transLists.getQuantity());
+
+        tx.commit();
+        session.close();
+    }
+
+    public static boolean updateStock(Books book) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Books newBook = (Books) session.get(Books.class, book.getBookId());
+        newBook.setQty(book.getQty());
+
+        tx.commit();
+        session.close();
+        return true;
+    }
+
+    public static void cancelBookFromCart(Transactions transaction, Books book) {
+
     }
 
     public static void main(String args[]) {

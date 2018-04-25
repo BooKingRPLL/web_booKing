@@ -214,8 +214,6 @@ public class BookDAO {
         session.close();
         return result;
     }
-    
-    
 
     public static boolean deleteBook(String bookID) {
         Session session = DBConnector.getFactory().openSession();
@@ -246,4 +244,15 @@ public class BookDAO {
         return true;
     }
 
+    public static boolean updateStock(Books book) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        Books newBook = (Books) session.get(Books.class, book.getBookId());
+        newBook.setQty(book.getQty());
+
+        tx.commit();
+        session.close();
+        return true;
+    }
 }
