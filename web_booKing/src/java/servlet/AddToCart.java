@@ -6,16 +6,24 @@
 package servlet;
 
 import controller.BookDAO;
+import controller.TransactionsDAO;
 import controller.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Math.random;
+import java.util.Date;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Books;
+import model.TransLists;
+import model.TransListsId;
+import model.Transactions;
 
 /**
  *
@@ -77,17 +85,59 @@ public class AddToCart extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         BookDAO bookDAO = new BookDAO();
-        int qty = request.getParameter("qty").equals("") ? 0 : Integer.parseInt(request.getParameter("qty"));
+        UserDAO userDAO = new UserDAO();
+        TransactionsDAO transDAO = new TransactionsDAO();
+        int req_qty = request.getParameter("qty").equals("") ? 0 : Integer.parseInt(request.getParameter("qty"));
         String bookID = request.getParameter("id");
         Books book = bookDAO.getBookByID(bookID);
-
-        if (qty != 0 ) {
-            if (qty > book.getQty()) {
+        String userid = null;
+        Random random = new Random();
+        Cookie cookie[] = request.getCookies();
+        Transactions new_trans = new Transactions();
+        if (req_qty != 0) {
+            if (req_qty > book.getQty()) {
                 request.setAttribute("warningAddToCart", "Qty melebihi stock!");
                 RequestDispatcher rd = request.getRequestDispatcher("product_details.jsp");
                 rd.include(request, response);
             } else {
-                
+                if (cookie != null) {
+                    for (int i = 0; i < cookie.length; i++) {
+                        if (cookie[i].getName().equals("userid")) {
+                            userid = cookie[i].getValue();
+                            break;
+                        }
+                    }
+                }
+                TransLists trans_list = new TransLists();
+                trans_list.setBooks(book);
+                trans_list.setQuantity(req_qty);
+                Transactions trans = transDAO.getTransCartByUser(userid);
+                System.out.println("tes:"+userid);
+                System.out.println(trans.getTransDate());
+                if (trans == null) {
+                    String email = "";
+                    if (cookie != null) {
+                        for (int i = 0; i < cookie.length; i++) {
+                            if (cookie[i].getName().equals("email")) {
+                                email = cookie[i].getValue();
+                                break;
+                            }
+                        }
+                    }
+                    new_trans.setCustomers(userDAO.getCustomerByEmail(email));
+                    new_trans.setStatus(transDAO.getStatusDefault());
+                    new_trans.setTransDate(new Date());
+                    new_trans.setTransId(Double.toString(random.nextDouble()));
+                    boolean insertTrans = transDAO.insertTrans(new_trans);
+                    
+                    trans_list.setTransactions(new_trans);
+                    trans_list.setId(new TransListsId(new_trans.getTransId(), book.getBookId()));
+                }else{
+                    trans_list.setTransactions(trans);
+                    trans_list.setId(new TransListsId(trans.getTransId(), book.getBookId()));
+                }
+                boolean insertTransList = transDAO.insertTransList(trans_list);
+               
                 RequestDispatcher rd = request.getRequestDispatcher("cart.jsp");
                 rd.include(request, response);
             }

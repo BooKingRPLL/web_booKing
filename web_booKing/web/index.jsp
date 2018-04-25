@@ -48,67 +48,34 @@
                 -->
                 <div class="well well-small">
                     <h3>New Books </h3> 
-                    <%                        String email = (String) request.getAttribute("email");
-                        if (email != null) {
-                            out.println(email);
-                        }
-                    %>
                     <hr class="soften"/>
 
                     <div class="row-fluid">
-                        <ul class="thumbnails">
-                            <%
-                                BookDAO bookDAO = new BookDAO();
-                                ArrayList<Books> newBooks = new ArrayList<Books>();
-                                newBooks = bookDAO.getAllBooks();
-                                for (int i = 0; i < newBooks.size(); i++) {
-                            %>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p><%=newBooks.get(i).getTitle()%></p>
-                                        <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
+                        <form action="addToCart" method="POST">
+                            <ul class="thumbnails">
+                                <%
+                                    BookDAO bookDAO = new BookDAO();
+                                    ArrayList<Books> newBooks = new ArrayList<Books>();
+                                    newBooks = bookDAO.getAllBooks();
+                                    for (int i = 0; i < newBooks.size(); i++) {
+                                %>
+                                <li class="span4">
+                                    <div class="thumbnail">
+                                        <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
+                                        <a href=<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
+                                        <div class="caption cntr">
+                                            <p><%=newBooks.get(i).getTitle()%></p>
+                                            <p><strong> <%=CurrencyConverter.split(newBooks.get(i).getPrice())%></strong></p>
+                                            <h4><a class="shopBtn" href="<%="\"product_details.jsp?id=" + newBooks.get(i).getBookId() + "\""%>" title="add to cart"> Add to cart </a></h4>
+                                            <br class="clr">
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            <%
-                                }
-                            %>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="well well-small">
-                    <h3>Popular Books </h3>
-                    <hr class="soften"/>
-
-                    <div class="row-fluid">
-                        <ul class="thumbnails">
-                            <%
-                                ArrayList<Books> popularBooks = new ArrayList<Books>();
-                                popularBooks = bookDAO.getAllBooks();
-                                for (int i = 0; i < popularBooks.size(); i++) {
-                            %>
-                            <li class="span4">
-                                <div class="thumbnail">
-                                    <a class="zoomTool" href="product_details.jsp" title="add to cart"><span class="icon-search"></span> QUICK VIEW</a>
-                                    <a href=<%="\"product_details.jsp?id=" + popularBooks.get(i).getBookId() + "\""%>><img src="assets/img/buku3.jpg" alt=""></a>
-                                    <div class="caption cntr">
-                                        <p><%=popularBooks.get(i).getTitle()%></p>
-                                        <p><strong> <%=CurrencyConverter.split(popularBooks.get(i).getPrice())%></strong></p>
-                                        <h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
-                                        <br class="clr">
-                                    </div>
-                                </div>
-                            </li>
-                            <%
-                                }
-                            %>
-                        </ul>
+                                </li>
+                                <%
+                                    }
+                                %>
+                            </ul>
+                        </form>
                     </div>
                 </div>
             </div>

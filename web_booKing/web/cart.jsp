@@ -4,6 +4,13 @@
     Author     : Sujana
 --%>
 
+<%@page import="model.TransLists"%>
+<%@page import="model.TransLists"%>
+<%@page import="model.Transactions"%>
+<%@page import="controller.TransactionsDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Books"%>
+<%@page import="controller.BookDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,32 +40,41 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <%
+                                TransactionsDAO transDAO = new TransactionsDAO();
+                                BookDAO bookDAO = new BookDAO();
+                                Cookie cookie[] = request.getCookies();
+                                String userid = "";
+                                if (cookie != null) {
+                                    for (int i = 0; i < cookie.length; i++) {
+                                        if (cookie[i].getName().equals("userid")) {
+                                            userid = cookie[i].getValue();
+                                            break;
+                                        }
+                                    }
+                                }
+                                Transactions t = transDAO.getTransCartByUser(userid);
+                                ArrayList<TransLists> transList = transDAO.getTransLists(t.getTransId());
+                                for (int i = 0; i < transList.size(); i++) {
+                                    Books b = bookDAO.getBookByID(transList.get(i).getBooks().getBookId());
+                            %>
                             <tr>
                                 <td><img width="100" src="assets/img/buku1.jpg" alt=""></td>
-                                <td>Spilling Ink</td>
+                                <td><%= b.getTitle() %></td>
                                 <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
-                                <td>$22.00</td>
+                                <td><%= b.getPrice() %></td>
                                 <td>
-                                    <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">
+                                    <%= transList.get(i).getQuantity() %>
+<!--                                    <input class="span1" style="max-width:34px" placeholder="1" id="appendedInputButtons" size="16" type="text" value="2">
                                     <div class="input-append">
                                         <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button"> + </button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
-                                    </div>
+                                    </div>-->
                                 </td>
-                                <td>$44.00</td>
+                                <td><%= (b.getPrice() * transList.get(i).getQuantity()) %></td>
                             </tr>
-                            <tr>
-                                <td><img width="100" src="assets/img/buku3.jpg" alt=""></td>
-                                <td>Algoritma & Pemrograman</td>
-                                <td><span class="shopBtn"><span class="icon-ok"></span></span> </td>
-                                <td>$22.00</td>
-                                <td>
-                                    <input class="span1" style="max-width:34px" placeholder="1" size="16" type="text">
-                                    <div class="input-append">
-                                        <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button">+</button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
-                                    </div>
-                                </td>
-                                <td>$22.00</td>
-                            </tr>
+                            <%
+                                }
+                            %>
                         </tbody>
                     </table><br/>
 
