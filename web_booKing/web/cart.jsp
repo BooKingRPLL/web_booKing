@@ -79,32 +79,6 @@
                     </table><br/>
 
                     <table class="table table-bordered">
-                        <tbody>
-                            <tr><td>ESTIMATE YOUR SHIPPING & TAXES</td></tr>
-                            <tr> 
-                                <td>
-                                    <form class="form-horizontal">
-                                        <div class="control-group">
-                                            <label class="span2 control-label">Address</label>
-                                            <div class="controls">
-                                                <input type="text" placeholder="Address">
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="span2 control-label">Post Code</label>
-                                            <div class="controls">
-                                                <input type="text" placeholder="Post Code">
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="controls">
-                                                <button type="submit" class="shopBtn">Click to check the price</button>
-                                            </div>
-                                        </div>
-                                    </form> 
-                                </td>
-                            </tr>
-                        </tbody>
                     </table>		
                     <a href="index.jsp" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Continue Shopping </a>
                     <a href="login.jsp" class="shopBtn btn-large pull-right">Next <span class="icon-arrow-right"></span></a>
