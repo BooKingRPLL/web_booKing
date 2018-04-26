@@ -31,6 +31,7 @@
                                 <th>Customer Name</th>
                                 <th>Transaction Date</th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <%
@@ -46,6 +47,9 @@
                                 <td><p><%=transDAO.getCustomerById(newTransactions.get(i).getCustomers().getUserId()).getName() %></p></td>                              
                                 <td><p><%=newTransactions.get(i).getTransDate()%></p></td>
                                 <td><p><%=transDAO.getStatusById(newTransactions.get(i).getStatus().getStatusId()).getStatus()%></p></td>
+                                <td>
+                                    <a href =<%="\"manage_transaction.jsp?id=" + newTransactions.get(i).getTransId() + "\""%>"><button type="submit">Update</button></a> 
+                                </td>
                             </tr>
                         </tbody>
                         <%

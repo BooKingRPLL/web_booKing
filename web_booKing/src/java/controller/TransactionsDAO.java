@@ -6,6 +6,7 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import model.Books;
 import model.Customers;
@@ -165,6 +166,28 @@ public class TransactionsDAO {
         tx.commit();
         session.close();
         return t;
+    }
+    
+    public static void updateTransaction(String transaksiId, String status) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction(); 
+        Transactions newTransaction = (Transactions) session.get(Transactions.class, transaksiId);
+        Status statusafter = new Status();
+        statusafter.setStatusId(status);
+       
+        newTransaction.setStatus(statusafter);
+
+        tx.commit();
+        session.close();
+    }
+     public static Transactions getTransactionByID(String id) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from Transactions where transId='" + id + "'");
+        ArrayList<Transactions> list = (ArrayList) q.list();
+
+        session.close();
+        return list.get(0);
     }
 
     public static TransLists getTransListByTransactionAndBook(String transactionID, String bookID) {

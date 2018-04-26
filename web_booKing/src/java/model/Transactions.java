@@ -55,6 +55,7 @@ public class Transactions  implements java.io.Serializable {
     public void setStatus(Status status) {
         this.status = status;
     }
+  
     public Date getTransDate() {
         return this.transDate;
     }
@@ -69,6 +70,7 @@ public class Transactions  implements java.io.Serializable {
     public void setTransListses(Set<TransLists> transListses) {
         this.transListses = transListses;
     }
+
 
 
 

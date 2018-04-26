@@ -24,39 +24,33 @@
                     <li class="active">Manage Transaction</li>
                 </ul>
                 <div class="well well-small">	
-                    <table class="table table-bordered table-condensed">
-                        <thead>
-                            <tr>
-                                <th>ID Transaction</th>
-                                <th>Customer Name</th>
-                                <th>Transaction Date</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <%
-                                TransactionsDAO transDAO = new TransactionsDAO();
-                                ArrayList<Transactions> newTransactions = new ArrayList<Transactions>();
-                                newTransactions = transDAO.getAllTransactions();
-                                for (int i = 0; i < newTransactions.size(); i++) {
-                                 
+                    <div class="row-fluid">
+                        <h3>Update Book:</h3>
+                        <hr class="soft"/>
+                        <form class="form-horizontal qtyFrm" action="UpdateTransaction" method="POST">
+                            <%
+                                String TransID = request.getParameter("id");
+                                Transactions trans = new Transactions();
+                                trans = TransactionsDAO.getTransactionByID(TransID);
                             %>
-                        <tbody>
-                            <tr>
-                                <td><p><%=newTransactions.get(i).getTransId()%></p></td>
-                                <td><p><%=transDAO.getCustomerById(newTransactions.get(i).getCustomers().getUserId()).getName() %></p></td>                              
-                                <td><p><%=newTransactions.get(i).getTransDate()%></p></td>
-                                <td>
-                                    <select id="status" name="status">
-                                        <option value="Pending">Pending</option>
-                                        <option value="Shipping">Shipping</option>
-                                        <option value="Complete">Complete</option>
-                                    </select>
-                                </td>
-                                <td><button type="button">Update</button></td>
-                            </tr>
-                        </tbody>
-                    </table><br/>
+                            <table class="table table-striped">
+                                <tbody>
+
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Transaction ID:</td><td class="techSpecTD2"><input type="text" name="txt_transid" value=<%=trans.getTransId()%> readonly></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Customer Name:</td><td class="techSpecTD2"><input type="text" name="txt_customername" value=<%=TransactionsDAO.getCustomerById(trans.getCustomers().getUserId()).getName()%> readonly></td></tr>
+                                    <tr class="techSpecRow"><td class="techSpecTD1">Status Before:</td><td class="techSpecTD2"><input type="text" name="txt_status" value=<%=TransactionsDAO.getStatusById(trans.getStatus().getStatusId()).getStatus()%> readonly></td></tr>
+                                    <tr><td><select id="statusType" name="statusType">
+                                                <option value="S00001">Cart</option>
+                                                <option value="S00002">Paid</option>
+                                                <option value="S00003">Shipped</option>
+                                                <option value="S00004">Received</option>
+                                            </select></td></tr>
+                                <input type="hidden" name="TransID" value=<%=TransID%>>
+                                <tr class="techSpecRow"><td class="techSpecTD1"><input type="submit" name="btn_update" value="Update"></td></tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div><br/>
                 </div>
             </div>
         </div>
