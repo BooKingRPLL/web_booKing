@@ -82,9 +82,10 @@ public class TransactionsDAO {
         Session session = DBConnector.getFactory().openSession();
         Transaction tx = session.beginTransaction();
 
-        Query q = session.createQuery("from TransLists where trans_id = '" + trans_id + "'");
+        Query q = session.createQuery("from TransLists where trans_id = '" + trans_id + "' and deleted = '0'");
         ArrayList<TransLists> list = (ArrayList) q.list();
-
+        
+        
         tx.commit();
         session.close();
         return list;
@@ -170,7 +171,20 @@ public class TransactionsDAO {
         Session session = DBConnector.getFactory().openSession();
 
         Query q = session.createQuery("from TransLists where trans_id = '" + transactionID + "' and book_id = '" + bookID + "'");
-        System.out.println("masuk sampe sini");
+
+        ArrayList<TransLists> transList = (ArrayList) q.list();
+        session.close();
+        if (transList.size() != 0) {
+            return transList.get(0);
+        }
+        return null;
+    }
+
+    public static TransLists getTransListByTransactionAndBookNotDeleted(String transactionID, String bookID) {
+        Session session = DBConnector.getFactory().openSession();
+
+        Query q = session.createQuery("from TransLists where trans_id = '" + transactionID + "' and book_id = '" + bookID + "' and deleted = '0'");
+
         ArrayList<TransLists> transList = (ArrayList) q.list();
         session.close();
         if (transList.size() != 0) {
@@ -185,7 +199,7 @@ public class TransactionsDAO {
 
         TransLists newTransLists = (TransLists) session.get(TransLists.class, transLists.getId());
         newTransLists.setQuantity(transLists.getQuantity());
-
+        newTransLists.setDeleted(transLists.isDeleted());
         tx.commit();
         session.close();
     }
@@ -202,8 +216,15 @@ public class TransactionsDAO {
         return true;
     }
 
-    public static void cancelBookFromCart(Transactions transaction, Books book) {
+    public static void cancelBookFromCart(TransLists transLists) {
+        Session session = DBConnector.getFactory().openSession();
+        Transaction tx = session.beginTransaction();
 
+        TransLists newTransLists = (TransLists) session.get(TransLists.class, transLists.getId());
+        newTransLists.setDeleted(true);
+
+        tx.commit();
+        session.close();
     }
 
     public static void main(String args[]) {

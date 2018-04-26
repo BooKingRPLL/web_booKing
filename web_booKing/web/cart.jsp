@@ -57,7 +57,9 @@
                                 }
                                 Transactions t = transDAO.getTransCartByUser(userid);
                                 if (t != null) {
+                                    
                                     ArrayList<TransLists> transList = transDAO.getTransLists(t.getTransId());
+                                    
                                     for (int i = 0; i < transList.size(); i++) {
                                         Books b = bookDAO.getBookByID(transList.get(i).getBooks().getBookId());
                             %>
@@ -73,8 +75,8 @@
                                                                             <button class="btn btn-mini" type="button">-</button><button class="btn btn-mini" type="button"> + </button><button class="btn btn-mini btn-danger" type="button"><span class="icon-remove"></span></button>
                                                                         </div>-->
                                 </td>
-                                <td><%= (b.getPrice() * transList.get(i).getQuantity())%></td>
-                                <td> <a href =""><button type="submit">Cancel</button></a></td>
+                                <td><%= CurrencyConverter.split(b.getPrice() * transList.get(i).getQuantity())%></td>
+                                <td> <a href =<%="\"CancelFromCart?transactionID="+t.getTransId()+"&bookID="+b.getBookId()+"\""%>><button type="submit">Cancel</button></a></td>
                             </tr>
                             <%
                                     }

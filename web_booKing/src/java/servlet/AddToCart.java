@@ -142,7 +142,11 @@ public class AddToCart extends HttpServlet {
                         trans_list.setTransactions(trans);
                         trans_list.setId(new TransListsId(trans.getTransId(), book.getBookId()));
                         transDAO.insertTransList(trans_list);
-                    }else{
+                    } else if (tempTransactionList.isDeleted()) {
+                        tempTransactionList.setDeleted(false);
+                        tempTransactionList.setQuantity(req_qty);
+                        transDAO.updateTransLists(tempTransactionList);
+                    } else {
                         tempTransactionList.setQuantity(tempTransactionList.getQuantity()+req_qty);
                         transDAO.updateTransLists(tempTransactionList);
                     }
